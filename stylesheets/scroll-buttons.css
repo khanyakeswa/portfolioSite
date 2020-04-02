@@ -1,0 +1,99 @@
+.scroll-button .scroll-up {
+  position: fixed;
+  width: 17.5px;
+  left: calc(35px - 8.75px);
+  top: 25px;
+  z-index: 3;
+  animation: bounce 2s infinite;
+  opacity: 0;
+  transition: opacity .2s;
+  transition-delay: .5s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.collapsed .scroll-up {
+  opacity: 1;
+}
+
+@keyframes bounce {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  60% {
+    -webkit-transform: translateY(5px);
+    -ms-transform: translateY(5px);
+    transform: translateY(5px);
+  }
+}
+
+.scroll-button .scroll-down {
+  position: fixed;
+  width: 17.5px;
+  left: calc(35px - 8.75px);
+  bottom: 25px;
+  z-index: 3;
+  animation: bounce-2 2s infinite;
+  cursor: pointer;
+  user-select: none;
+}
+
+@keyframes bounce-2 {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  60% {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
+.portfolio-button:hover .button-graphic, .resume-button:hover .button-graphic, .tagline-button:hover .button-graphic{
+  animation: bounce-3 1s infinite;
+}
+
+@keyframes bounce-3 {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+  40% {
+    -webkit-transform: translateX(-4px);
+    -ms-transform: translateX(-4px);
+    transform: translateX(-4px);
+  }
+  60% {
+    -webkit-transform: translateX(-2px);
+    -ms-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+}
+

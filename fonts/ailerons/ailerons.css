@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'Ailerons';
+  src: url('Ailerons-Typeface.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Ailerons-Typeface.woff') format('woff'); /* Pretty Modern Browsers */
+}
