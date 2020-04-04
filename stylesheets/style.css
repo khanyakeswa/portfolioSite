@@ -40,6 +40,10 @@ main {
   width: 100%;
   background-color: unset;
   transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
 
 .sections-container {
@@ -85,6 +89,10 @@ main {
   transition: opacity 0.2s;
   user-select: none;
   width: 17.5px;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
 }
 
 .collapsed .scroll-up {
@@ -111,6 +119,10 @@ body::-webkit-scrollbar {
   z-index: 3;
   opacity: 0;
   transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
 }
 
 .scroll-indicator circle {
@@ -135,6 +147,10 @@ body::-webkit-scrollbar {
 .current-section-7 .scroll-indicator .dot-7 {
   fill: var(--main-bg-color);
   transition: fill 0.2s;
+  -webkit-transition: fill 0.2s;
+  -moz-transition: fill 0.2s;
+  -ms-transition: fill 0.2s;
+  -o-transition: fill 0.2s;
 }
 
 /* page navigation */
@@ -153,6 +169,10 @@ body::-webkit-scrollbar {
   transition: all 0.5s;
   width: 100%;
   z-index: 2;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
 
 .navbar {
@@ -166,7 +186,7 @@ body::-webkit-scrollbar {
   margin-left: 35px;
   opacity: 0.9;
   transform: translateX(0px);
-  transition: color 0.1s;
+  transition: color 0.25s;
   width: fit-content;
   z-index: 1;
 }
@@ -182,12 +202,20 @@ body::-webkit-scrollbar {
   font-size: 15px;
   transition: color 200ms;
   user-select: none;
+  -webkit-transition: color 200ms;
+  -moz-transition: color 200ms;
+  -ms-transition: color 200ms;
+  -o-transition: color 200ms;
 }
 
 .link:hover {
   color: var(--main-bg-color);
   font-weight: 500;
   transition: color 0.2s;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
 }
 
 .link-underscore {
@@ -201,6 +229,10 @@ body::-webkit-scrollbar {
   transition: all 0.35s;
   grid-column: 1;
   z-index: 3;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  -ms-transition: all 0.35s;
+  -o-transition: all 0.35s;
 }
 
 .current-section-1 .link-underscore {
@@ -238,6 +270,10 @@ body::-webkit-scrollbar {
 .logo .graphic {
   fill: var(--main-bg-color);
   transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
 }
 .logo:hover .graphic {
   fill: #fff;
@@ -247,6 +283,10 @@ body::-webkit-scrollbar {
   opacity: 1;
   fill: #fff;
   transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
 }
 .logo:hover polygon {
   opacity: 0;
@@ -265,6 +305,10 @@ body::-webkit-scrollbar {
   transition: all 0.5s;
   width: 480px;
   z-index: 2;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
 
 .collapsed .sidebar {
@@ -300,6 +344,10 @@ body::-webkit-scrollbar {
   line-height: 1.2;
   z-index: 2;
   transition: background-color 0.5s;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
 }
 
 .sidebar .title .role {
@@ -312,6 +360,10 @@ body::-webkit-scrollbar {
   background-color: #e54e40;
   margin-top: 20px;
   transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
 }
 
 .sidebar .blurb {
@@ -375,7 +427,7 @@ body::-webkit-scrollbar {
 
 .sidebar .scene {
   width: 35%;
-  height: 75px;
+  height: 70px;
   transform: translateY(-5px);
   z-index: 1;
 }
@@ -388,6 +440,10 @@ body::-webkit-scrollbar {
   transform-style: preserve-3d;
   transition: transform 1s, background-color 0.5s;
   opacity: 0;
+  -webkit-transition: transform 1s, background-color 0.5s;
+  -moz-transition: transform 1s, background-color 0.5s;
+  -ms-transition: transform 1s, background-color 0.5s;
+  -o-transition: transform 1s, background-color 0.5s;
 }
 
 .carousel.visible {
@@ -399,27 +455,36 @@ body::-webkit-scrollbar {
   width: 430px;
   height: var(--standard-margin-width);
   top: 0px;
-  line-height: 80px;
+  background-color: #ffffff;
+  transition: all 0.5s;
+}
+.carousel .carousel-cell span {
+  line-height: 70px;
   font-size: 45px;
   font-family: 'Metropolis Semibold';
   color: #ffffff;
   text-align: left;
-  transition: transform 1s;
+  transition: all .5s;
   overflow-wrap: break-word;
-  background-color: #ffffff;
-  transition: all 0.5s;
+  transition: all .5s;
+  transform-style: preserve-3d;
+  text-shadow: 5px 0px 4px rgba(0, 0, 0, 0);
 }
 
-.carousel.firstCell .carousel-cell:nth-child(1) {
+.carousel.firstCell .carousel-cell:nth-child(1) span {
+  transform: translateZ(15px);
   color: #e54e40;
 }
-.carousel.secondCell .carousel-cell:nth-child(2) {
+.carousel.secondCell .carousel-cell:nth-child(2) span {
+  transform: translateZ(15px);
   color: #e54e40;
 }
-.carousel.thirdCell .carousel-cell:nth-child(3) {
+.carousel.thirdCell .carousel-cell:nth-child(3) span {
+  transform: translateZ(15px);
   color: #e54e40;
 }
-.carousel.fourthCell .carousel-cell:nth-child(4) {
+.carousel.fourthCell .carousel-cell:nth-child(4) span {
+  transform: translateZ(15px);
   color: #e54e40;
 }
 
@@ -455,7 +520,6 @@ body::-webkit-scrollbar {
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   transition: box-shadow 0.25s;
-  transition: transform 0.05s;
 }
 
 .portfolio-button {
@@ -515,18 +579,41 @@ body::-webkit-scrollbar {
   overflow: hidden;
   perspective: 500px;
   z-index: -5;
-  transition: all 0.5s ease-out;
-  /* filter: brightness(1); */
-  filter: blur(2px);
-  box-shadow: inset 0px 0px 35px rgba(0, 0, 0, 0.25);
+  transition: all .5s ease-out;
+  /*filter: brightness(1);
+  */opacity: .5;
   transform: translateZ(-10px);
+  -webkit-transition: all .5s ease-out;
+  -moz-transition: all .5s ease-out;
+  -ms-transition: all .5s ease-out;
+  -o-transition: all .5s ease-out;
 }
 
 .current-section-1 .section.top {
-  box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 0);
-  /* filter: brightness(.95); */
-  filter: blur(0px);
+  opacity: 1;
   transform: translateZ(0px);
+}
+
+.section.top .shadow {
+  width: 100%;
+  height: 105px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+  background-size: 100% 100%;
+  background-position: center 50%;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  opacity: 1;
+  transition: all .25s ease-out;
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+}
+
+.current-section-1 .section.top .shadow {
+  opacity: 0;
+  background-position: center 75%;
 }
 
 .section.top .splash {
@@ -542,9 +629,16 @@ body::-webkit-scrollbar {
   transform-style: preserve-3d;
   transition: all 0.5s ease-out;
   transition-delay: 0.1s;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  display: none;
 }
 
-.current-section-1 .section.top .splash {
+.current-section-1 .section.top .splash,
+.current-section-2 .section.top .splash {
+  display: block;
   box-shadow: 0px 0px -25px rgba(0, 0, 0, 0.25);
   transform: translateZ(0px);
 }
@@ -556,16 +650,44 @@ body::-webkit-scrollbar {
   height: 100vh;
   width: 100vw;
   z-index: 0;
+  opacity: .5;
   transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
 }
 
 .current-section-2 .section.about-me {
-  /* box-shadow: 0px 0px 35px rgba(0, 0, 0, .15); */
+  opacity: 1;
+  transform: translateZ(0px);
+}
+
+.section.top .shadow {
+  width: 100%;
+  height: 105px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+  background-size: 100% 100%;
+  background-position: center 50%;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  opacity: 1;
+  transition: all .25s ease-out;
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+}
+
+.current-section-2 .section.about-me .shadow {
+  opacity: 0;
+  background-position: center 75%;
 }
 
 .section.about-me .body {
   bottom: 70px;
-  display: grid;
+  display: none;
   grid-template-columns: 410px 2fr;
   left: 70px;
   position: absolute;
@@ -573,6 +695,12 @@ body::-webkit-scrollbar {
   top: 70px;
   perspective: 500px;
   perspective-origin: left;
+}
+
+.current-section-1 .section.about-me .body,
+.current-section-2 .section.about-me .body,
+.current-section-3 .section.about-me .body {
+  display: grid;
 }
 
 .section.about-me .content.one {
@@ -586,6 +714,10 @@ body::-webkit-scrollbar {
   transform-style: preserve-3d;
   transition: all 0.5s;
   transition-delay: 0.1s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
 
 .current-section-2 .section.about-me .content.one {
@@ -625,6 +757,10 @@ body::-webkit-scrollbar {
   border-bottom: 4px solid var(--main-bg-color);
   padding-top: 50px;
   transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
 }
 
 .current-section-2 .section.about-me .underscore {
@@ -659,6 +795,10 @@ body::-webkit-scrollbar {
   transform-style: preserve-3d;
   transition: transform 0.25s;
   transition-timing-function: ease-out;
+  -webkit-transition: transform 0.25s;
+  -moz-transition: transform 0.25s;
+  -ms-transition: transform 0.25s;
+  -o-transition: transform 0.25s;
 }
 
 .color-bar:hover {
@@ -675,6 +815,10 @@ body::-webkit-scrollbar {
   transform-style: preserve-3d;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   z-index: 1;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
 }
 
 .color-bar:hover .lottie {
@@ -718,6 +862,10 @@ body::-webkit-scrollbar {
   user-select: none;
   transition: all 250ms;
   z-index: 1;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
 }
 
 .color-bar:hover .tagline-button-wrapper {
@@ -739,6 +887,10 @@ body::-webkit-scrollbar {
   transition: opacity 0.5s;
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
 }
 
 .tagline-button .button-content {
