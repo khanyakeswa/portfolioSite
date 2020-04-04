@@ -624,7 +624,7 @@ body::-webkit-scrollbar {
 
 .section.top .splash {
   position: fixed;
-  background: url('/imgs/splash_1.jpg') no-repeat center center;
+  background: url('./imgs/splash_1.jpg') no-repeat center center;
   background-size: cover;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.25);
   top: var(--standard-margin-width);
@@ -712,7 +712,7 @@ body::-webkit-scrollbar {
 .section.about-me .content.one {
   grid-column: 1;
   grid-row: 1;
-  background-image: url('/imgs/headshot.jpg');
+  background-image: url('./imgs/headshot.jpg');
   background-size: cover;
   background-position: center;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0);
