@@ -18,7 +18,6 @@ function scheduleSectionPositionRecalculation() {
 window.addEventListener('resize', scheduleSectionPositionRecalculation)
 
 function indexOfCurrentSection() {
-  const sections = [].slice.call(document.querySelectorAll('.section'))
   const scrollPosition = window.pageYOffset
 
   let i = 0
@@ -106,7 +105,6 @@ const homeButton = document.querySelector('.link.home')
 const aboutMeButton = document.querySelector('.link.about-me')
 const processButton = document.querySelector('.link.process')
 const portfolioButton = document.querySelector('.link.portfolio')
-const portfolioLink = document.querySelector('.portfolio-button-wrapper')
 const latestWorkButton = document.querySelector('.link.latest-work')
 const linkUnderscore = document.querySelector('.link-underscore')
 
@@ -119,4 +117,3 @@ homeButton.addEventListener('click', scrollToHomeSection)
 aboutMeButton.addEventListener('click', scrollToAboutMeSection)
 processButton.addEventListener('click', scrollToProcessSection)
 portfolioButton.addEventListener('click', scrollToPortfolioSection)
-portfolioLink.addEventListener('click', scrollToPortfolioSection)
