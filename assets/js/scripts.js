@@ -85,7 +85,7 @@ const LottieAnimations = {
     loop: true,
     renderer: 'svg',
     preserveAspectRatio: 'none',
-    path: './animations/color-bar.json'
+    path: 'assets/animations/color-bar.json'
   }),
 }
 
