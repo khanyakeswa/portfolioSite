@@ -91,7 +91,7 @@ main {
   cursor: pointer;
   opacity: 0;
   transition-delay: opacity 0.5s;
-  transition: opacity 0.2s, background-color 0.5s;
+  transition: opacity 0.2s, background-color 0.35s;
   pointer-events: none;
 }
 .collapsed .scroll-up {
@@ -101,7 +101,7 @@ main {
 .scroll-buttons .scroll-up svg {
   animation: bounce-2 2s infinite;
   width: 17.5px;
-  transition: all 0.5s;
+  transition: all 0.35s;
   fill: #e54e40;
 }
 .scroll-buttons .scroll-up:hover, 
@@ -123,14 +123,14 @@ main {
   align-items: center;
   cursor: pointer;
   transition-delay: opacity 0.5s;
-  transition: opacity 0.2s, background-color 0.5s;
+  transition: opacity 0.2s, background-color 0.35s;
 }
 
 .scroll-buttons .scroll-down svg {
   fill: #e54e40;
   animation: bounce 2s infinite;
   width: 17.5px;
-  transition: all 0.5s;
+  transition: all 0.35s;
 }
 
 .scroll-indicator {
@@ -311,6 +311,7 @@ main {
   top: 0;
   transition: all 0.5s;
   width: auto;
+  cursor: default;
 }
 
 .collapsed .sidebar .content {
@@ -329,7 +330,7 @@ main {
   z-index: 2;
 }
 .sidebar:hover .title {
-  transform: translateY(-125px);
+  transform: translateY(-100px);
 }
 
 .sidebar .title .name {
@@ -379,7 +380,7 @@ main {
 }
 .sidebar:hover .blurb-content {
   opacity: 1;
-  transform: translateY(57px);
+  transform: translateY(62px);
 }
 
 .sidebar .mouse-over {
@@ -394,7 +395,7 @@ main {
 }
 .sidebar:hover .mouse-over {
   opacity: 0;
-  transform: translateY(67px);
+  transform: translateY(72px);
 }
 .sidebar .title,
 .sidebar .title::after,
