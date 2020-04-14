@@ -1,10 +1,23 @@
-const navbar = document.querySelector('.navbar', '.portfolio-button')
-const colorBarHeight = document.getElementsByClassName('color-bar');
+const navbar = document.querySelector('.navbar')
+const colorBarHeight = document.getElementsByClassName('color-bar').offsetHeight
 const colorBarWrapper = document.querySelector('.color-bar')
-const carousel = document.querySelector('.carousel')
-const cells = carousel.querySelectorAll('.carousel-cell')
-const cellHeight = cells[0].offsetHeight
+const scrollIndicators = document.querySelectorAll('.scroll-indicator circle')
 
+const scrollUpButton = document.querySelector('.scroll-up')
+const scrollDownButton = document.querySelector('.scroll-down')
+const homeButton = document.querySelector('.link.home')
+const aboutMeButton = document.querySelector('.link.about-me')
+const processButton = document.querySelector('.link.process')
+const portfolioButton = document.querySelector('.link.portfolio')
+const linkUnderscore = document.querySelector('.link-underscore')
+
+const sidebarCarousel = document.getElementById('sidebarCarousel')
+const sectionCarousel = document.querySelector('main')
+const sidebarCells = sidebarCarousel.querySelectorAll('.carousel-cell')
+const sectionCells = sectionCarousel.querySelectorAll('.section')
+
+let sectionPositions = []
+let sections = []
 let last_known_scroll_position = 0
 let ticking = false
 let isCollapsed = false
@@ -18,24 +31,116 @@ let enterSectionFive = false
 let enterSectionSix = false
 let enterSectionSeven = false
 
-let exitSectionOne = false
-let exitSectionTwo = false
-let exitSectionThree = false
-let exitSectionFour = false
-let exitSectionFive = false
-let exitSectionSix = false
-let exitSectionSeven = false
+recalculateSectionPositions()
+
+function recalculateSectionPositions() {
+  console.log('Re-calculating section positions')
+
+  sections = [].slice.call(document.querySelectorAll('.section'))
+
+  sectionPositions = sections.map((section) => section.offsetTop)
+}
+
+function scheduleSectionPositionRecalculation() {
+  window.requestAnimationFrame(recalculateSectionPositions)
+}
+
+window.addEventListener('resize', scheduleSectionPositionRecalculation)
+
+function indexOfCurrentSection() {
+  const scrollPosition = window.pageYOffset
+
+  let i = 0
+  while (scrollPosition >= sectionPositions[i] - window.innerHeight / 2) {
+    i++
+  }
+
+  return i - 1
+}
+
+function indexOfPreviousSection() {
+  return (indexOfCurrentSection() - 1) % sectionPositions.length
+}
+
+function indexOfNextSection() {
+  return (indexOfCurrentSection() + 1) % sectionPositions.length
+}
+
+function sectionIndexToPosition(sectionIndex) {
+  if (sectionIndex < 0) {
+    throw new Error('Negative section indices are not allowed')
+  }
+  if (sectionIndex > sectionPositions.length - 1) {
+    throw new Error('Section index out of bounds')
+  }
+
+  return sectionPositions[sectionIndex]
+}
+
+function scrollToSectionIndex(sectionIndex) {
+  try {
+    const sectionPosition = sectionIndexToPosition(sectionIndex)
+
+    window.scrollTo({
+      behavior: 'smooth',
+      top: sectionPosition,
+    })
+  } catch {
+    console.log('Could not scroll to section index ' + sectionIndex)
+  }
+}
+
+function scrollToPreviousSection() {
+  const sectionIndex = indexOfPreviousSection()
+  scrollToSectionIndex(sectionIndex)
+}
+
+function scrollToNextSection() {
+  const sectionIndex = indexOfNextSection()
+  scrollToSectionIndex(sectionIndex)
+}
+
+function scrollToHomeSection() {
+  const sectionIndex = 0
+  scrollToSectionIndex(sectionIndex)
+  homeButton.style.left = homeUnderscorePosition
+}
+
+function scrollToAboutMeSection() {
+  const sectionIndex = 1
+  scrollToSectionIndex(sectionIndex)
+}
+
+function scrollToResumeSection() {
+  const sectionIndex = 2
+  scrollToSectionIndex(sectionIndex)
+}
+
+function scrollToPortfolioSection() {
+  const sectionIndex = 3
+  scrollToSectionIndex(sectionIndex)
+}
+
+function scrollToLatestWorkSection() {
+  const sectionIndex = 4
+  scrollToSectionIndex(sectionIndex)
+}
 
 function doSomething(scroll_pos) {
   // navbar.style.transform = `translateX(${scroll_pos}px)`
   // Do something with the scroll position
 
   // scroll measurments
-  const isScrolledSectionZero = scroll_pos >= 0 && scroll_pos < 0.5 * window.innerHeight
-  const isScrolledSectionOne = scroll_pos >= 0.5 * window.innerHeight && scroll_pos < 1.5 * window.innerHeight
-  const isScrolledSectionTwo = scroll_pos >= 1.5 * window.innerHeight && scroll_pos < 2.5 * window.innerHeight
-  
-  if (!isCollapsed && !isScrolledSectionZero) {
+  const isScrolledSectionZero =
+    scroll_pos >= 0 && scroll_pos < 0.5 * window.innerHeight
+  const isScrolledSectionOne =
+    scroll_pos >= 0.5 * window.innerHeight &&
+    scroll_pos < 1.5 * window.innerHeight
+  const isScrolledSectionTwo =
+    scroll_pos >= 1.5 * window.innerHeight &&
+    scroll_pos < 2.5 * window.innerHeight
+
+  if (!isCollapsed && indexOfCurrentSection() == 0) {
     document.body.classList.add('collapsed')
     isCollapsed = true
   }
@@ -60,11 +165,11 @@ function doSomething(scroll_pos) {
   }
 }
 
-window.addEventListener('scroll', function(e) {
+window.addEventListener('scroll', function (e) {
   last_known_scroll_position = window.scrollY
 
   if (!ticking) {
-    window.requestAnimationFrame(function() {
+    window.requestAnimationFrame(function () {
       doSomething(last_known_scroll_position)
       ticking = false
     })
@@ -77,81 +182,67 @@ doSomething(window.scrollY)
 
 // lottie animations
 
-const LottieAnimations = {
-  colorbar: lottie.loadAnimation({
-    container: document.querySelector('.color-bar .lottie'),
-    isFrame: true,
-    autoplay: true,
-    loop: true,
-    renderer: 'svg',
-    preserveAspectRatio: 'none',
-    path: 'assets/animations/color-bar.json'
-  }),
-}
-
-colorBarWrapper.addEventListener('mouseover', function(event) {
-  LottieAnimations.colorbar.setSpeed(1)
-})
-colorBarWrapper.addEventListener('mouseleave', function(event) {
-  LottieAnimations.colorbar.setSpeed(.5)
-})
-
-// section carousel logic
-
-
+// const LottieAnimations = {
+//   colorbar: lottie.loadAnimation({
+//     container: document.querySelector('.color-bar .lottie'),
+//     isFrame: true,
+//     autoplay: true,
+//     loop: true,
+//     renderer: 'svg',
+//     preserveAspectRatio: 'none',
+//     path: 'assets/animations/color-bar.json',
+//   }),
+// }
 
 // sidebar carousel logic
-var selectedIndex = 0
+var cellIndex = 0
 var selectedArray = [0, 1, 2, 3]
 var rotateFn = 'rotateX'
 var radius, theta
-// console.log( cellWidth, cellHeight );
 
 function rotateCarousel() {
   if (selectedArray[0] == 0) {
-    carousel.classList.add('firstCell')
-  }
-  else {
-    carousel.classList.remove('firstCell')
+    sidebarCarousel.classList.add('firstCell')
+  } else {
+    sidebarCarousel.classList.remove('firstCell')
   }
 
   if (selectedArray[0] == 1) {
-    carousel.classList.add('secondCell')
-  }
-  else {
-    carousel.classList.remove('secondCell')
+    sidebarCarousel.classList.add('secondCell')
+  } else {
+    sidebarCarousel.classList.remove('secondCell')
   }
 
   if (selectedArray[0] == 2) {
-    carousel.classList.add('thirdCell')
-  }
-  else {
-    carousel.classList.remove('thirdCell')
+    sidebarCarousel.classList.add('thirdCell')
+  } else {
+    sidebarCarousel.classList.remove('thirdCell')
   }
 
   if (selectedArray[0] == 3) {
-    carousel.classList.add('fourthCell')
+    sidebarCarousel.classList.add('fourthCell')
+  } else {
+    sidebarCarousel.classList.remove('fourthCell')
   }
-  else {
-    carousel.classList.remove('fourthCell')
-  }
-  var angle = 90 * selectedIndex * -1
-  carousel.style.transform =
-    'translateZ(' + -radius + 'px) ' + rotateFn + '(' + angle + 'deg)'
+  var angle = 90 * cellIndex * -1
+  this.style.transform =
+    'translateZ(' + -cellRadius + 'px) ' + rotateFn + '(' + angle + 'deg)'
 }
 
-var cellsRange = 4
-
 function changeCarousel() {
-  radius = Math.round(cellHeight / 2 / Math.tan(Math.PI / 4))
-  for (var i = 0; i < cells.length; i++) {
-    var cell = cells[i]
+  sectionRadius = Math.round(window.innerHeight / 2 / Math.tan(Math.PI / 4))
+  cellRadius = Math.round(70 / 2 / Math.tan(Math.PI / 4))
+  for (var i = 0; i < sidebarCells.length; i++) {
+    var cell = sidebarCells[i]
+    var section = sectionCells[i]
     if (i < 4) {
       // visible cell
       cell.style.opacity = 1
       var cellAngle = 90 * i
       cell.style.transform =
-        rotateFn + '(' + cellAngle + 'deg) translateZ(' + radius + 'px)'
+        rotateFn + '(' + cellAngle + 'deg) translateZ(' + cellRadius + 'px)'
+      section.style.transform =
+        rotateFn + '(' + -cellAngle + 'deg) translateZ(' + sectionRadius + 'px)'
     } else {
       // hidden cell
       cell.style.color = '#ffffff'
@@ -160,29 +251,28 @@ function changeCarousel() {
     }
   }
 
-  rotateCarousel()
+  // sidebarCarousel.rotate
 }
 
 function onOrientationChange() {
   changeCarousel()
 }
 
-// set initials
 onOrientationChange()
 
 function arrayRotate(arr, reverse) {
-  if (reverse) arr.unshift(arr.pop());
-  else arr.push(arr.shift());
-  return arr;
+  if (reverse) arr.unshift(arr.pop())
+  else arr.push(arr.shift())
+  return arr
 }
 
 function advanceCarousel() {
   requestAnimationFrame(() => {
     showCarouselIfNotVisibleAlready(() => {
-      selectedIndex++
+      cellIndex++
       var currentIndex = selectedArray.shift()
       selectedArray.push(currentIndex)
-      rotateCarousel()
+      sidebarCarouselRotate()
       setTimeout(advanceCarousel, 2000)
     })
   })
@@ -199,11 +289,48 @@ function showCarouselIfNotVisibleAlready(callback) {
     document.querySelector('.carousel').classList.add('visible')
     isCarouselVisible = true
     callback()
-  }, 500)
+  }, 100)
 }
+
+let sidebarCarouselRotate = rotateCarousel.bind(sidebarCarousel)
+let sectionCarouselRotate = rotateCarousel.bind(sectionCarousel)
 
 advanceCarousel()
 
+// tween animations for each section
+var controller = new ScrollMagic.Controller({container: 'main'})
 
+var t1 = TweenMax.to('#body-carousel', 1, {
+  rotationX: '-=90',
+  z: Math.floor(0.5 * $(window).innerHeight),
+})
+const sectionHeight = sectionCells[0].offsetHeight
 
+var firstSection = new ScrollMagic.Scene({
+  triggerElement: '.carousel.scene',
+  duration: sectionHeight,
+  offset: -.1,
+  triggerHook: 0
+})
+  .setTween(t1)
+  .setPin('.carousel.scene')
+  // .addIndicators({
+  //   name: 'triggerDown', // custom name for your scene
+  //   indent: 500, // indent from the browser edge
+  //   colorStart: 'blue', // custom color - colorEnd
+  //   colorTrigger: 'green',
+  // })
+  .addTo(controller)
 
+scrollUpButton.addEventListener('click', scrollToPreviousSection)
+scrollDownButton.addEventListener('click', scrollToNextSection)
+
+homeButton.addEventListener('click', scrollToHomeSection)
+aboutMeButton.addEventListener('click', scrollToAboutMeSection)
+portfolioButton.addEventListener('click', scrollToPortfolioSection)
+// colorBarWrapper.addEventListener('mouseover', function (event) {
+//   LottieAnimations.colorbar.setSpeed(1)
+// })
+// colorBarWrapper.addEventListener('mouseleave', function (event) {
+//   LottieAnimations.colorbar.setSpeed(0.5)
+// })

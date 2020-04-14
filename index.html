@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="assets/fonts/metropolis/metropolis.css" />
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.js"></script>
     <script src="assets/js/bodymovin.js"></script>
     <script src="assets/js/lottie.js"></script>
     <title>My Portfolio</title>
@@ -87,34 +87,19 @@
           </div>
         </div>
         <div class="navbar">
-          <div
-            style="cursor: pointer;"
-            class="link home"
-          >
+          <div style="cursor: pointer;" class="link home">
             Home
           </div>
-          <div
-            style="cursor: pointer;"
-            class="link about-me"
-          >
+          <div style="cursor: pointer;" class="link about-me">
             About Me
           </div>
-          <div
-            style="cursor: pointer;"
-            class="link process"
-          >
+          <div style="cursor: pointer;" class="link process">
             My Process
           </div>
-          <div
-            style="cursor: pointer;"
-            class="link portfolio"
-          >
+          <div style="cursor: pointer;" class="link portfolio">
             Portfolio
           </div>
-          <div
-            style="cursor: pointer;"
-            class="link portfolio"
-          >
+          <div style="cursor: pointer;" class="link portfolio">
             Contact
           </div>
           <div class="link-underscore"></div>
@@ -126,7 +111,7 @@
           <div class="title">
             <div class="name">Hi! I'm Khanya Keswa,</div>
             <div class="scene">
-              <div class="carousel">
+              <div id="sidebarCarousel" class="carousel">
                 <div class="carousel-cell"><span>UX Designer</span></div>
                 <div class="carousel-cell"><span>UI/UX Developer</span></div>
                 <div class="carousel-cell"><span>Product Designer</span></div>
@@ -146,31 +131,42 @@
           </div>
         </div>
       </div>
-      <div class="sections-container">
-        <div class="section top">
-          <div class="shadow"></div>
-          <div class="splash"></div>
-        </div>
-        <div class="section about-me">
-          <div class="shadow"></div>
-          <div class="body">
-            <div class="content one">
-              <div class="headshot"></div>
-            </div>
-            <div class="content two">
-              <div class="title">
-                <div class="header">About Me</div>
-                <div class="underscore"></div>
+      <div class="carousel scene">
+        <div id="body-carousel" class="carousel">
+          <div class="landing section">
+            <div class="shadow"></div>
+            <div class="splash"></div>
+          </div>
+          <div class="about-me section">
+            <div class="shadow"></div>
+            <div class="body">
+              <div class="content one">
+                <div class="headshot"></div>
               </div>
-              <div class="info">
-                <div class="tile">
-                  <div class="image"></div>
-                  <div class="caption"></div>
+              <div class="content two">
+                <div class="title">
+                  <div class="header">About Me</div>
+                  <div class="underscore"></div>
+                </div>
+                <div class="info">
+                  <div class="tile">
+                    <div class="image"></div>
+                    <div class="caption"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="resume section">
+            <div class="shadow"></div>
+          </div>
+          <div class="portfolio section">
+            <div class="shadow"></div>
+          </div>
         </div>
+      </div>
+      <div class="body">
+        <div class="spacer"></div>
         <div class="color-bar">
           <div class="tagline">Let's build something cool.</div>
           <div class="tagline-button-wrapper">
@@ -214,7 +210,7 @@
           </div>
           <div class="lottie"></div>
         </div>
-        <div class="section contact-me">
+        <div class="contact-me">
           <div class="body">
             <div class="title">
               <div class="header">Contact Me</div>
@@ -225,9 +221,8 @@
         </div>
       </div>
     </main>
-    
+
     <!-- <script src="assets/js/scroll-buttons.js"></script> -->
-    <script src="assets/js/scroll-buttons.js"></script>
     <script src="assets/js/scripts.js"></script>
   </body>
 </html>
