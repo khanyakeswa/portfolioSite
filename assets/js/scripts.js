@@ -299,12 +299,13 @@ advanceCarousel()
 
 // tween animations for each section
 var controller = new ScrollMagic.Controller({container: 'main'})
+const sectionHeight = sectionCells[0].offsetHeight
 
 var t1 = TweenMax.to('#body-carousel', 1, {
+  ease: Power2.easeOut,
   rotationX: '-=90',
-  z: Math.floor(0.5 * $(window).innerHeight),
+  z: Math.round(-0.5 * sectionHeight)
 })
-const sectionHeight = sectionCells[0].offsetHeight
 
 var firstSection = new ScrollMagic.Scene({
   triggerElement: '.carousel.scene',
@@ -314,12 +315,6 @@ var firstSection = new ScrollMagic.Scene({
 })
   .setTween(t1)
   .setPin('.carousel.scene')
-  // .addIndicators({
-  //   name: 'triggerDown', // custom name for your scene
-  //   indent: 500, // indent from the browser edge
-  //   colorStart: 'blue', // custom color - colorEnd
-  //   colorTrigger: 'green',
-  // })
   .addTo(controller)
 
 scrollUpButton.addEventListener('click', scrollToPreviousSection)
