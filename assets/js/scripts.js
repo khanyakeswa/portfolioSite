@@ -319,7 +319,7 @@ let sidebarCarouselRotate = rotateCarousel.bind(sidebarCarousel)
 advanceCarousel()
 
 // tween animations for each section
-var controller = new ScrollMagic.Controller({ container: 'main' })
+var controller = new ScrollMagic.Controller({ container: '.main-body' })
 var sectionHeight = sectionCells[0].offsetHeight
 var carouselSpan = Math.round(sectionCells[0].offsetHeight + sectionCells[1].offsetHeight + sectionCells[2].offsetHeight + sectionCells[3].offsetHeight)
 
@@ -410,18 +410,18 @@ var firstSectionTimeline = new TimelineMax()
 //   )
 
 var firstSection = new ScrollMagic.Scene({
-  triggerElement: '.landing.placeholder',
+  triggerElement: '.carousel.scene',
   duration: sectionHeight,
   offset: -0.1,
   triggerHook: 0,
 })
   .setTween(firstSectionTimeline)
-  // .addIndicators({
-  //   name: 'triggerDown', // custom name for your scene
-  //   indent: 520, // indent from the browser edge
-  //   colorStart: 'green', // custom color - colorEnd
-  //   colorTrigger: 'red',
-  // })
+  .addIndicators({
+    name: 'triggerDown', // custom name for your scene
+    indent: 520, // indent from the browser edge
+    colorStart: 'green', // custom color - colorEnd
+    colorTrigger: 'red',
+  })
   .setPin('.carousel.scene')
   .addTo(controller)
 

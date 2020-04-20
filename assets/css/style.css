@@ -60,7 +60,7 @@ main {
   perspective: 2400px;
   position: relative;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .spacer {
