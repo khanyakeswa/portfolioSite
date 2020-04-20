@@ -12,16 +12,21 @@ const portfolioButton = document.querySelector('.link.portfolio')
 const linkUnderscore = document.querySelector('.link-underscore')
 
 const sidebarCarousel = document.getElementById('sidebarCarousel')
-const sectionCarousel = document.querySelector('main')
+const sectionCarousel = document.querySelector('.carousel.scene')
+const main = document.querySelector('main')
 const sidebarCells = sidebarCarousel.querySelectorAll('.carousel-cell')
-const sectionCells = sectionCarousel.querySelectorAll('.section')
+const sectionCells = main.querySelectorAll('.section')
+const placeHolderSections = main.querySelectorAll('.placeholder')
 
 let sectionPositions = []
+let carouselSections = []
 let sections = []
+let sectionOffset = 0
 let last_known_scroll_position = 0
 let ticking = false
 let isCollapsed = false
 let isTransitioned = false
+let spliced = false
 
 let enterSectionOne = false
 let enterSectionTwo = false
@@ -31,24 +36,40 @@ let enterSectionFive = false
 let enterSectionSix = false
 let enterSectionSeven = false
 
-recalculateSectionPositions()
-
 function recalculateSectionPositions() {
   console.log('Re-calculating section positions')
 
   sections = [].slice.call(document.querySelectorAll('.section'))
+  if (!spliced) {
+    let splicer = () => {
+      carouselSections = sections.splice(0, 4)
+      spliced == true
+    }
+    splicer()
+  }
 
-  sectionPositions = sections.map((section) => section.offsetTop)
+  // sectionOffset = 0
+  // for (let i = 0; i < 4; i++) {
+  //   console.log(sectionOffset)
+  //   const newTop = sectionOffset.toString() + 'px'
+  //   placeHolderSections[i].style.top = newTop
+  //   sectionOffset += carouselSections[i].offsetHeight;
+  // }
+
+  sectionPositions = sections.map(function (sec) {
+    return sec.offsetTop
+  })
 }
 
 function scheduleSectionPositionRecalculation() {
   window.requestAnimationFrame(recalculateSectionPositions)
 }
+scheduleSectionPositionRecalculation()
 
 window.addEventListener('resize', scheduleSectionPositionRecalculation)
 
 function indexOfCurrentSection() {
-  const scrollPosition = window.pageYOffset
+  const scrollPosition = main.scrollTop
 
   let i = 0
   while (scrollPosition >= sectionPositions[i] - window.innerHeight / 2) {
@@ -226,7 +247,7 @@ function rotateCarousel() {
   }
   var angle = 90 * cellIndex * -1
   this.style.transform =
-    'translateZ(' + -cellRadius + 'px) ' + rotateFn + '(' + angle + 'deg)'
+    'translateZ(' + 0 + 'px) ' + rotateFn + '(' + angle + 'deg)'
 }
 
 function changeCarousel() {
@@ -242,7 +263,7 @@ function changeCarousel() {
       cell.style.transform =
         rotateFn + '(' + cellAngle + 'deg) translateZ(' + cellRadius + 'px)'
       section.style.transform =
-        rotateFn + '(' + -cellAngle + 'deg) translateZ(' + sectionRadius + 'px)'
+        rotateFn + '(' + cellAngle + 'deg)'
     } else {
       // hidden cell
       cell.style.color = '#ffffff'
@@ -273,7 +294,7 @@ function advanceCarousel() {
       var currentIndex = selectedArray.shift()
       selectedArray.push(currentIndex)
       sidebarCarouselRotate()
-      setTimeout(advanceCarousel, 2000)
+      setTimeout(advanceCarousel, 1700)
     })
   })
 }
@@ -293,27 +314,114 @@ function showCarouselIfNotVisibleAlready(callback) {
 }
 
 let sidebarCarouselRotate = rotateCarousel.bind(sidebarCarousel)
-let sectionCarouselRotate = rotateCarousel.bind(sectionCarousel)
+// let sectionCarouselRotate = rotateCarousel.bind(main)
 
 advanceCarousel()
 
 // tween animations for each section
-var controller = new ScrollMagic.Controller({container: 'main'})
-const sectionHeight = sectionCells[0].offsetHeight
+var controller = new ScrollMagic.Controller({ container: 'main' })
+var sectionHeight = sectionCells[0].offsetHeight
+var carouselSpan = Math.round(sectionCells[0].offsetHeight + sectionCells[1].offsetHeight + sectionCells[2].offsetHeight + sectionCells[3].offsetHeight)
 
-var t1 = TweenMax.to('#body-carousel', 1, {
-  ease: Power2.easeOut,
-  rotationX: '-=90',
-  z: Math.round(-0.5 * sectionHeight)
-})
+//Timelines
+var firstSectionTimeline = new TimelineMax()
+  .to(
+    '.landing.section',
+    1,
+    {
+      // ease: Power2.out,
+      // yoyoEase:true,
+      immediateRender: true,
+      rotationX: '+=90',
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+    '-=1'
+  )
+  .fromTo(
+    '.about-me .shadow',
+    1,
+    {
+      autoAlpha: 1,
+    },
+    {
+      autoAlpha: 0,
+    },
+    '-=1'
+  )
+
+// var secondSectionTimeline = new TimelineMax({
+//   smoothChildTiming: true,
+// })
+//   .to(
+//     '#section',
+//     1,
+//     {
+//       // ease: Power2.out,
+//       // yoyoEase:true,
+//       immediateRender: true,
+//       rotationX: '+=90',
+//       force3d: false
+//     },
+//     '-=1'
+//   )
+//   .fromTo(
+//     '.resume .shadow',
+//     1,
+//     {
+//       autoAlpha: 1,
+//     },
+//     {
+//       autoAlpha: 0,
+//     },
+//     '-=1'
+//   )
+
+// var thirdSectionTimeline = new TimelineMax({
+//   smoothChildTiming: true,
+// })
+//   .fromTo(
+//     '#body-carousel',
+//     1,
+//     {
+//       // ease: Power2.out,
+//       // yoyoEase:true,
+//       immediateRender: true,
+//       rotationX: 180,
+//     },
+//     {
+//       // ease: Power2.out,
+//       // yoyoEase:true,
+//       immediateRender: true,
+//       rotationX: 270,
+//     },
+//     '-=1'
+//   )
+//   .fromTo(
+//     '.portfolio .shadow',
+//     1,
+//     {
+//       autoAlpha: 1,
+//     },
+//     {
+//       autoAlpha: 0,
+//     },
+//     '-=1'
+//   )
 
 var firstSection = new ScrollMagic.Scene({
-  triggerElement: '.carousel.scene',
+  triggerElement: '.landing.placeholder',
   duration: sectionHeight,
-  offset: -.1,
-  triggerHook: 0
+  offset: -0.1,
+  triggerHook: 0,
 })
-  .setTween(t1)
+  .setTween(firstSectionTimeline)
+  // .addIndicators({
+  //   name: 'triggerDown', // custom name for your scene
+  //   indent: 520, // indent from the browser edge
+  //   colorStart: 'green', // custom color - colorEnd
+  //   colorTrigger: 'red',
+  // })
   .setPin('.carousel.scene')
   .addTo(controller)
 
