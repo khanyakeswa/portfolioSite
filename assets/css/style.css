@@ -56,7 +56,7 @@ main {
 
 .main-body {
   grid-column: 1/3;
-  height: 100vh;
+  /* height: 100vh; */
   perspective: 2400px;
   position: relative;
   overflow-x: hidden;

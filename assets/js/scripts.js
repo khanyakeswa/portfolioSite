@@ -319,7 +319,7 @@ let sidebarCarouselRotate = rotateCarousel.bind(sidebarCarousel)
 advanceCarousel()
 
 // tween animations for each section
-var controller = new ScrollMagic.Controller({ container: '.main-body' })
+var controller = new ScrollMagic.Controller({ container: 'main' })
 var sectionHeight = sectionCells[0].offsetHeight
 var carouselSpan = Math.round(sectionCells[0].offsetHeight + sectionCells[1].offsetHeight + sectionCells[2].offsetHeight + sectionCells[3].offsetHeight)
 
