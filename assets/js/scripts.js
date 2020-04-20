@@ -12,10 +12,11 @@ const portfolioButton = document.querySelector('.link.portfolio')
 const linkUnderscore = document.querySelector('.link-underscore')
 
 const sidebarCarousel = document.getElementById('sidebarCarousel')
-const sectionCarousel = document.querySelector('.carousel.scene')
+const sectionsContainer = document.querySelector('.sections-container')
 const main = document.querySelector('main')
 const sidebarCells = sidebarCarousel.querySelectorAll('.carousel-cell')
 const sectionCells = main.querySelectorAll('.section')
+const sectionBackdrops = main.querySelectorAll('.section .backdrop')
 const placeHolderSections = main.querySelectorAll('.placeholder')
 
 let sectionPositions = []
@@ -37,39 +38,25 @@ let enterSectionSix = false
 let enterSectionSeven = false
 
 function recalculateSectionPositions() {
+  document.body.classList.remove('collapsed')
   console.log('Re-calculating section positions')
 
-  sections = [].slice.call(document.querySelectorAll('.section'))
-  if (!spliced) {
-    let splicer = () => {
-      carouselSections = sections.splice(0, 4)
-      spliced == true
-    }
-    splicer()
-  }
+  const sections = [].slice.call(document.querySelectorAll('.placeholder'))
 
-  // sectionOffset = 0
-  // for (let i = 0; i < 4; i++) {
-  //   console.log(sectionOffset)
-  //   const newTop = sectionOffset.toString() + 'px'
-  //   placeHolderSections[i].style.top = newTop
-  //   sectionOffset += carouselSections[i].offsetHeight;
-  // }
-
-  sectionPositions = sections.map(function (sec) {
-    return sec.offsetTop
-  })
+  sectionPositions = sections.map((section) => section.offsetTop)
 }
 
-function scheduleSectionPositionRecalculation() {
-  window.requestAnimationFrame(recalculateSectionPositions)
-}
-scheduleSectionPositionRecalculation()
+recalculateSectionPositions()
 
-window.addEventListener('resize', scheduleSectionPositionRecalculation)
+// function scheduleSectionPositionRecalculation() {
+//   window.requestAnimationFrame(recalculateSectionPositions)
+// }
+// scheduleSectionPositionRecalculation()
+
+window.addEventListener('resize', recalculateSectionPositions)
 
 function indexOfCurrentSection() {
-  const scrollPosition = main.scrollTop
+  const scrollPosition = sectionsContainer.scrollTop
 
   let i = 0
   while (scrollPosition >= sectionPositions[i] - window.innerHeight / 2) {
@@ -102,7 +89,7 @@ function scrollToSectionIndex(sectionIndex) {
   try {
     const sectionPosition = sectionIndexToPosition(sectionIndex)
 
-    window.scrollTo({
+    sectionsContainer.scrollTo({
       behavior: 'smooth',
       top: sectionPosition,
     })
@@ -142,52 +129,45 @@ function scrollToPortfolioSection() {
   scrollToSectionIndex(sectionIndex)
 }
 
-function scrollToLatestWorkSection() {
+function scrollToContactSection() {
   const sectionIndex = 4
   scrollToSectionIndex(sectionIndex)
 }
 
 function doSomething(scroll_pos) {
-  // navbar.style.transform = `translateX(${scroll_pos}px)`
-  // Do something with the scroll position
-
-  // scroll measurments
-  const isScrolledSectionZero =
-    scroll_pos >= 0 && scroll_pos < 0.5 * window.innerHeight
-  const isScrolledSectionOne =
-    scroll_pos >= 0.5 * window.innerHeight &&
-    scroll_pos < 1.5 * window.innerHeight
-  const isScrolledSectionTwo =
-    scroll_pos >= 1.5 * window.innerHeight &&
-    scroll_pos < 2.5 * window.innerHeight
-
-  if (!isCollapsed && indexOfCurrentSection() == 0) {
-    document.body.classList.add('collapsed')
-    isCollapsed = true
-  }
-  if (isCollapsed && isScrolledSectionZero) {
-    document.body.classList.remove('collapsed')
-    isCollapsed = false
-  }
-
-  //Scrolled to first section
-  if (isScrolledSectionZero) {
-    document.body.classList.add('current-section-1')
-  }
-  if (!isScrolledSectionZero) {
-    document.body.classList.remove('current-section-1')
-  }
-
-  if (isScrolledSectionOne) {
-    document.body.classList.add('current-section-2')
-  }
-  if (!isScrolledSectionOne) {
-    document.body.classList.remove('current-section-2')
-  }
+  // // navbar.style.transform = `translateX(${scroll_pos}px)`
+  // // Do something with the scroll position
+  // //Scrolled to first section
+  // if (indexOfCurrentSection() == 0) {
+  //   document.body.classList.add('current-section-1')
+  //   // document.body.classList.remove('collapsed')
+  // }
+  // else {
+  //   document.body.classList.remove('current-section-1')
+  //   // document.body.classList.add('collapsed')
+  // }
+  // if (indexOfCurrentSection() == 1) {
+  //   document.body.classList.add('current-section-2')
+  // }
+  // else {
+  //   document.body.classList.remove('current-section-2')
+  // }
+  // if (indexOfCurrentSection() == 2) {
+  //   document.body.classList.add('current-section-3')
+  // }
+  // else {
+  //   document.body.classList.remove('current-section-3')
+  // }
+  // if (indexOfCurrentSection() == 3) {
+  //   document.body.classList.add('current-section-4')
+  // }
+  // else {
+  //   document.body.classList.remove('current-section-4')
+  // }
 }
 
-window.addEventListener('scroll', function (e) {
-  last_known_scroll_position = window.scrollY
+sectionsContainer.addEventListener('scroll', function (e) {
+  last_known_scroll_position = sectionsContainer.scrollTop
 
   if (!ticking) {
     window.requestAnimationFrame(function () {
@@ -199,7 +179,7 @@ window.addEventListener('scroll', function (e) {
   }
 })
 
-doSomething(window.scrollY)
+doSomething(sectionsContainer.scrollTop)
 
 // lottie animations
 
@@ -262,8 +242,7 @@ function changeCarousel() {
       var cellAngle = 90 * i
       cell.style.transform =
         rotateFn + '(' + cellAngle + 'deg) translateZ(' + cellRadius + 'px)'
-      section.style.transform =
-        rotateFn + '(' + cellAngle + 'deg)'
+      section.style.transform = rotateFn + '(' + -cellAngle + 'deg)'
     } else {
       // hidden cell
       cell.style.color = '#ffffff'
@@ -319,99 +298,132 @@ let sidebarCarouselRotate = rotateCarousel.bind(sidebarCarousel)
 advanceCarousel()
 
 // tween animations for each section
-var controller = new ScrollMagic.Controller({ container: 'main' })
+var controller = new ScrollMagic.Controller({
+  container: '.sections-container',
+})
 var sectionHeight = sectionCells[0].offsetHeight
-var carouselSpan = Math.round(sectionCells[0].offsetHeight + sectionCells[1].offsetHeight + sectionCells[2].offsetHeight + sectionCells[3].offsetHeight)
+var carouselSpan = Math.round(
+  sectionCells[0].offsetHeight +
+    sectionCells[1].offsetHeight +
+    sectionCells[2].offsetHeight +
+    sectionCells[3].offsetHeight
+)
 
 //Timelines
 var firstSectionTimeline = new TimelineMax()
   .to(
     '.landing.section',
-    1,
+    0.5,
     {
-      // ease: Power2.out,
       // yoyoEase:true,
-      immediateRender: true,
-      rotationX: '+=90',
+      rotationX: 90,
       // transformOrigin: "50% 50% -50%"
       // autoAlpha: 0,
     },
-    '-=1'
+  )
+
+var secondSectionTimeline = new TimelineMax()
+  .fromTo(
+    '.about-me.section',
+    0.5,
+    {
+      // yoyoEase:true,
+      rotationX: -90,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+    {
+      // yoyoEase:true,
+      rotationX: 0,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    }
   )
   .fromTo(
-    '.about-me .shadow',
-    1,
+    '.about-me.section',
+    0.5,
+    {
+      // yoyoEase:true,
+      rotationX: 0,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+    {
+      // yoyoEase:true,
+      rotationX: 90,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    }
+  )
+  .to(
+    '.about-me.section',
+    0.5,
+    {}
+  )
+
+var thirdSectionTimeline = new TimelineMax()
+  .fromTo(
+    '.resume.section',
+    .5,
+    {
+      // yoyoEase:true,
+      rotationX: -180,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+    {
+      // yoyoEase:true,
+      rotationX: -90,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+  )
+  .fromTo(
+    '.resume.section',
+    .5,
+    {
+      // yoyoEase:true,
+      rotationX: -90,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+    {
+      // yoyoEase:true,
+      rotationX: 0,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+  )
+  .fromTo(
+    '.resume.section',
+    .5,
+    {
+      // yoyoEase:true,
+      rotationX: 0,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+    {
+      // yoyoEase:true,
+      rotationX: 90,
+      // transformOrigin: "50% 50% -50%"
+      // autoAlpha: 0,
+    },
+  )
+  .fromTo(
+    '.portfolio .shadow',
+    .5,
     {
       autoAlpha: 1,
     },
     {
       autoAlpha: 0,
     },
-    '-=1'
   )
 
-// var secondSectionTimeline = new TimelineMax({
-//   smoothChildTiming: true,
-// })
-//   .to(
-//     '#section',
-//     1,
-//     {
-//       // ease: Power2.out,
-//       // yoyoEase:true,
-//       immediateRender: true,
-//       rotationX: '+=90',
-//       force3d: false
-//     },
-//     '-=1'
-//   )
-//   .fromTo(
-//     '.resume .shadow',
-//     1,
-//     {
-//       autoAlpha: 1,
-//     },
-//     {
-//       autoAlpha: 0,
-//     },
-//     '-=1'
-//   )
-
-// var thirdSectionTimeline = new TimelineMax({
-//   smoothChildTiming: true,
-// })
-//   .fromTo(
-//     '#body-carousel',
-//     1,
-//     {
-//       // ease: Power2.out,
-//       // yoyoEase:true,
-//       immediateRender: true,
-//       rotationX: 180,
-//     },
-//     {
-//       // ease: Power2.out,
-//       // yoyoEase:true,
-//       immediateRender: true,
-//       rotationX: 270,
-//     },
-//     '-=1'
-//   )
-//   .fromTo(
-//     '.portfolio .shadow',
-//     1,
-//     {
-//       autoAlpha: 1,
-//     },
-//     {
-//       autoAlpha: 0,
-//     },
-//     '-=1'
-//   )
-
 var firstSection = new ScrollMagic.Scene({
-  triggerElement: '.carousel.scene',
-  duration: sectionHeight,
+  triggerElement: '.landing.placeholder',
+  duration: 3 * sectionHeight,
   offset: -0.1,
   triggerHook: 0,
 })
@@ -419,10 +431,31 @@ var firstSection = new ScrollMagic.Scene({
   .addIndicators({
     name: 'triggerDown', // custom name for your scene
     indent: 520, // indent from the browser edge
-    colorStart: 'green', // custom color - colorEnd
-    colorTrigger: 'red',
+    colorStart: 'transparent', // custom color - colorEnd
+    colorEnd: 'transparent',
+    colorTrigger: 'transparent',
   })
-  .setPin('.carousel.scene')
+  .setPin('.landing.section')
+  .addTo(controller)
+
+var secondSection = new ScrollMagic.Scene({
+  triggerElement: '.landing.placeholder',
+  duration: 3 * sectionHeight,
+  offset: -0.1,
+  triggerHook: 0,
+})
+  .setTween(secondSectionTimeline)
+  .setPin('.about-me.section')
+  .addTo(controller)
+
+var thirdSection = new ScrollMagic.Scene({
+  triggerElement: '.landing.placeholder',
+  duration: 3 * sectionHeight,
+  offset: -0.1,
+  triggerHook: 0,
+})
+  .setTween(thirdSectionTimeline)
+  .setPin('.resume.section')
   .addTo(controller)
 
 scrollUpButton.addEventListener('click', scrollToPreviousSection)

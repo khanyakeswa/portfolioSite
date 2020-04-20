@@ -44,7 +44,8 @@ main {
   /* display: grid;
   grid-template-columns: 1fr 2fr; */
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   position: relative;
   width: 100%;
   background-color: unset;
@@ -54,9 +55,9 @@ main {
 	/* scroll-snap-type: y proximity; */
 }
 
-.main-body {
+main > .body {
   grid-column: 1/3;
-  /* height: 100vh; */
+  height: auto;
   perspective: 2400px;
   position: relative;
   overflow-x: hidden;
@@ -74,7 +75,7 @@ main {
   grid-column: 1/3;
 }
 
-.carousel.scene {
+.sections-container {
   width: 100vw;
   height: 100vh;
   transform-style: preserve-3d;
@@ -82,11 +83,11 @@ main {
   z-index: 999;
 }
 
-.carousel.scene .section {
+.sections-container .section {
   height: 100vh;
   position: absolute;
   width: 100vw;
-  /* transform-origin: 50vw 50vh -50vh; */
+  transform-origin: 50vw 50vh -50vh;
   transform-style: preserve-3d;
   top: 0;
   background-color: #ffffff;
@@ -94,7 +95,7 @@ main {
   backface-visibility: hidden;
 }
 
-.placeholder-wrapper {
+.static {
   position: absolute;
   height: fit-content;
   width: 100%;
@@ -553,21 +554,12 @@ main {
   z-index: 0;
 }
 
-.landing.section span {
-  transform: translate3d(0px, 10px, 25px);
-  position: absolute;
-  font-family: 'Metropolis Regular';
-  font-size: 2.5em;
-  color: #ffffff;
-  z-index: 1;
-}
-
 /* about-me section */
 .about-me.section {
   height: 100vh;
   width: 100vw;
   opacity: 1;
-  transition: all 0.5s ease-out;
+  /* transition: all 0.5s ease-out; */
 }
 
 .about-me.section .shadow {
@@ -580,12 +572,11 @@ main {
   z-index: -1;
   top: 0px;
   opacity: 1;
-  transition: all .25s ease-out;
 }
 
 .about-me.section .body {
   bottom: 70px;
-  display: none;
+  display: grid;
   grid-template-columns: 410px 2fr;
   left: 70px;
   position: absolute;
@@ -595,28 +586,16 @@ main {
   perspective-origin: left;
 }
 
-.current-section-1 .about-me.section .body,
-.current-section-2 .about-me.section .body,
-.current-section-3 .about-me.section .body {
-  display: grid;
-}
-
 .about-me.section .content.one {
   grid-column: 1;
   grid-row: 1;
   background-image: url('/assets/imgs/headshot.jpg');
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0);
-  transform: translateZ(-10px);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, .15);
   transform-style: preserve-3d;
   transition: all 0.5s;
   transition-delay: 0.1s;
-}
-
-.current-section-2 .about-me.section .content.one {
-  box-shadow: var(--medium-drop-shadow);
-  transform: translateZ(0px);
 }
 
 .about-me.section .content.two {
@@ -647,14 +626,9 @@ main {
 
 .about-me.section .underscore {
   width: 110px;
-  transform: translateX(-110px);
   border-bottom: 4px solid var(--main-bg-color);
   padding-top: 50px;
   transition: all 0.5s ease-out;
-}
-
-.current-section-2 .about-me.section .underscore {
-  transform: translateX(0px);
 }
 
 /* section resume */
@@ -663,7 +637,6 @@ main {
   height: 100vh;
   width: 100vw;
   z-index: 1;
-  background-color: #e54e40;
 }
 
 /* section resume */
@@ -672,7 +645,6 @@ main {
   height: 100vh;
   width: 100vw;
   z-index: 1;
-  background-color: #23d5ab;
 }
 
 /* section contact-me */
