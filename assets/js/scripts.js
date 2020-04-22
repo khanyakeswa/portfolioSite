@@ -12,10 +12,12 @@ const portfolioButton = document.querySelector('.link.portfolio')
 const linkUnderscore = document.querySelector('.link-underscore')
 
 const sidebarCarousel = document.getElementById('sidebarCarousel')
+const sectionCarousel = document.getElementById('.non-static')
 const sectionsContainer = document.querySelector('.sections-container')
 const main = document.querySelector('main')
 const sidebarCells = sidebarCarousel.querySelectorAll('.carousel-cell')
 const sectionCells = main.querySelectorAll('.section')
+const sectionContent = main.querySelectorAll('.section-content')
 const sectionBackdrops = main.querySelectorAll('.section .backdrop')
 const placeHolderSections = main.querySelectorAll('.placeholder')
 
@@ -46,14 +48,12 @@ function recalculateSectionPositions() {
   sectionPositions = sections.map((section) => section.offsetTop)
 }
 
-recalculateSectionPositions()
+function scheduleSectionPositionRecalculation() {
+  window.requestAnimationFrame(recalculateSectionPositions)
+}
+scheduleSectionPositionRecalculation()
 
-// function scheduleSectionPositionRecalculation() {
-//   window.requestAnimationFrame(recalculateSectionPositions)
-// }
-// scheduleSectionPositionRecalculation()
-
-window.addEventListener('resize', recalculateSectionPositions)
+window.addEventListener('resize', scheduleSectionPositionRecalculation)
 
 function indexOfCurrentSection() {
   const scrollPosition = sectionsContainer.scrollTop
@@ -111,7 +111,7 @@ function scrollToNextSection() {
 function scrollToHomeSection() {
   const sectionIndex = 0
   scrollToSectionIndex(sectionIndex)
-  homeButton.style.left = homeUnderscorePosition
+  // homeButton.style.left = homeUnderscorePosition
 }
 
 function scrollToAboutMeSection() {
@@ -135,35 +135,35 @@ function scrollToContactSection() {
 }
 
 function doSomething(scroll_pos) {
-  // // navbar.style.transform = `translateX(${scroll_pos}px)`
-  // // Do something with the scroll position
-  // //Scrolled to first section
-  // if (indexOfCurrentSection() == 0) {
-  //   document.body.classList.add('current-section-1')
-  //   // document.body.classList.remove('collapsed')
-  // }
-  // else {
-  //   document.body.classList.remove('current-section-1')
-  //   // document.body.classList.add('collapsed')
-  // }
-  // if (indexOfCurrentSection() == 1) {
-  //   document.body.classList.add('current-section-2')
-  // }
-  // else {
-  //   document.body.classList.remove('current-section-2')
-  // }
-  // if (indexOfCurrentSection() == 2) {
-  //   document.body.classList.add('current-section-3')
-  // }
-  // else {
-  //   document.body.classList.remove('current-section-3')
-  // }
-  // if (indexOfCurrentSection() == 3) {
-  //   document.body.classList.add('current-section-4')
-  // }
-  // else {
-  //   document.body.classList.remove('current-section-4')
-  // }
+  // navbar.style.transform = `translateX(${scroll_pos}px)`
+  // Do something with the scroll position
+  //Scrolled to first section
+  if (indexOfCurrentSection() == 0) {
+    document.body.classList.add('current-section-1')
+    document.body.classList.remove('collapsed')
+  }
+  else {
+    document.body.classList.remove('current-section-1')
+    document.body.classList.add('collapsed')
+  }
+  if (indexOfCurrentSection() == 1) {
+    document.body.classList.add('current-section-2')
+  }
+  else {
+    document.body.classList.remove('current-section-2')
+  }
+  if (indexOfCurrentSection() == 2) {
+    document.body.classList.add('current-section-3')
+  }
+  else {
+    document.body.classList.remove('current-section-3')
+  }
+  if (indexOfCurrentSection() == 3) {
+    document.body.classList.add('current-section-4')
+  }
+  else {
+    document.body.classList.remove('current-section-4')
+  }
 }
 
 sectionsContainer.addEventListener('scroll', function (e) {
@@ -231,18 +231,24 @@ function rotateCarousel() {
 }
 
 function changeCarousel() {
-  sectionRadius = Math.round(window.innerHeight / 2 / Math.tan(Math.PI / 4))
-  cellRadius = Math.round(70 / 2 / Math.tan(Math.PI / 4))
+  let cellRadius = Math.round(70 / 2 / Math.tan(Math.PI / 4))
+  let sectionRadius = Math.round(window.innerHeight / 2 / Math.tan(Math.PI / 4))
+  let contentRadius = Math.round(window.innerHeight / 2 / Math.tan(Math.PI / 4))
+  
   for (var i = 0; i < sidebarCells.length; i++) {
     var cell = sidebarCells[i]
     var section = sectionCells[i]
+    var content = sectionContent[i]
     if (i < 4) {
       // visible cell
       cell.style.opacity = 1
-      var cellAngle = 90 * i
+      var cellAngle = -90 * i 
       cell.style.transform =
-        rotateFn + '(' + cellAngle + 'deg) translateZ(' + cellRadius + 'px)'
-      section.style.transform = rotateFn + '(' + -cellAngle + 'deg)'
+        rotateFn + '(' + -cellAngle + 'deg) translateZ(' + cellRadius + 'px)'
+      section.style.transform = 
+        rotateFn + '(' + -cellAngle + 'deg) translateZ(' + sectionRadius + 'px)'
+      content.style.transform = 
+        rotateFn + '(' + -cellAngle + 'deg) translateZ(' + contentRadius + 'px)'
     } else {
       // hidden cell
       cell.style.color = '#ffffff'
@@ -311,60 +317,9 @@ var carouselSpan = Math.round(
 
 //Timelines
 var firstSectionTimeline = new TimelineMax()
-  .to(
-    '.landing.section',
-    0.5,
-    {
-      // yoyoEase:true,
-      rotationX: 90,
-      // transformOrigin: "50% 50% -50%"
-      // autoAlpha: 0,
-    },
-  )
-
-var secondSectionTimeline = new TimelineMax()
   .fromTo(
-    '.about-me.section',
-    0.5,
-    {
-      // yoyoEase:true,
-      rotationX: -90,
-      // transformOrigin: "50% 50% -50%"
-      // autoAlpha: 0,
-    },
-    {
-      // yoyoEase:true,
-      rotationX: 0,
-      // transformOrigin: "50% 50% -50%"
-      // autoAlpha: 0,
-    }
-  )
-  .fromTo(
-    '.about-me.section',
-    0.5,
-    {
-      // yoyoEase:true,
-      rotationX: 0,
-      // transformOrigin: "50% 50% -50%"
-      // autoAlpha: 0,
-    },
-    {
-      // yoyoEase:true,
-      rotationX: 90,
-      // transformOrigin: "50% 50% -50%"
-      // autoAlpha: 0,
-    }
-  )
-  .to(
-    '.about-me.section',
-    0.5,
-    {}
-  )
-
-var thirdSectionTimeline = new TimelineMax()
-  .fromTo(
-    '.resume.section',
-    .5,
+    '.non-static',
+    1,
     {
       // yoyoEase:true,
       rotationX: -180,
@@ -379,8 +334,63 @@ var thirdSectionTimeline = new TimelineMax()
     },
   )
   .fromTo(
-    '.resume.section',
-    .5,
+    '.landing.section-content',
+    1.1,
+    {
+      // yoyoEase:true,
+      z: '-=0',
+      y: '+=0',
+      rotationX: '+=0',
+      autoAlpha: 1,
+    },
+    {
+      // yoyoEase:true,
+      z: '-=100%',
+      y: '+=25%',
+      rotationX: '+=10',
+      autoAlpha: .5,
+    },
+    '-=1'
+  )
+  .fromTo(
+    '.about-me.section-content',
+    1,
+    {
+      // yoyoEase:true,
+      z: '-50vh',
+      y: '-=25%',
+      rotationX: '-90',
+      autoAlpha: .5,
+    },
+    {
+      // yoyoEase:true,
+      z: '0',
+      y: '50%',
+      // rotationX: '+=0',
+      autoAlpha: 1,
+    },
+    '-=1'
+  )
+  .fromTo(
+    '.about-me .shadow',
+    1,
+    {
+      // yoyoEase:true,
+      // transformOrigin: "50% 50% -50%"
+      autoAlpha: 1
+    },
+    {
+      // yoyoEase:true,
+      // transformOrigin: "50% 50% -50%"
+      autoAlpha: 0
+    },
+    '-=1'
+  )
+
+var secondSectionTimeline = new TimelineMax()
+  .fromTo(
+    '.non-static',
+    1,
     {
       // yoyoEase:true,
       rotationX: -90,
@@ -394,9 +404,11 @@ var thirdSectionTimeline = new TimelineMax()
       // autoAlpha: 0,
     },
   )
+
+var thirdSectionTimeline = new TimelineMax()
   .fromTo(
-    '.resume.section',
-    .5,
+    '.non-static',
+    1,
     {
       // yoyoEase:true,
       rotationX: 0,
@@ -410,20 +422,10 @@ var thirdSectionTimeline = new TimelineMax()
       // autoAlpha: 0,
     },
   )
-  .fromTo(
-    '.portfolio .shadow',
-    .5,
-    {
-      autoAlpha: 1,
-    },
-    {
-      autoAlpha: 0,
-    },
-  )
 
 var firstSection = new ScrollMagic.Scene({
   triggerElement: '.landing.placeholder',
-  duration: 3 * sectionHeight,
+  duration: sectionHeight,
   offset: -0.1,
   triggerHook: 0,
 })
@@ -435,27 +437,27 @@ var firstSection = new ScrollMagic.Scene({
     colorEnd: 'transparent',
     colorTrigger: 'transparent',
   })
-  .setPin('.landing.section')
+  .setPin('.non-static')
   .addTo(controller)
 
 var secondSection = new ScrollMagic.Scene({
-  triggerElement: '.landing.placeholder',
-  duration: 3 * sectionHeight,
+  triggerElement: '.about-me.placeholder',
+  duration: sectionHeight,
   offset: -0.1,
   triggerHook: 0,
 })
   .setTween(secondSectionTimeline)
-  .setPin('.about-me.section')
+  .setPin('.non-static')
   .addTo(controller)
 
 var thirdSection = new ScrollMagic.Scene({
-  triggerElement: '.landing.placeholder',
-  duration: 3 * sectionHeight,
+  triggerElement: '.resume.placeholder',
+  duration: sectionHeight,
   offset: -0.1,
   triggerHook: 0,
 })
   .setTween(thirdSectionTimeline)
-  .setPin('.resume.section')
+  .setPin('.non-static')
   .addTo(controller)
 
 scrollUpButton.addEventListener('click', scrollToPreviousSection)
