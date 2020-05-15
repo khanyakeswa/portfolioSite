@@ -11,19 +11,29 @@ const processButton = document.querySelector('.link.process')
 const portfolioButton = document.querySelector('.link.portfolio')
 const linkUnderscore = document.querySelector('.link-underscore')
 
-const sidebarCarousel = document.getElementById('sidebarCarousel')
-const sectionCarousel = document.getElementById('.non-static')
+const sidebarCarousel = document.getElementById('sidebar-carousel')
 const sectionsContainer = document.querySelector('.sections-container')
-const main = document.querySelector('main')
+const sectionCarousel = document.getElementById('.non-static')
 const sidebarCells = sidebarCarousel.querySelectorAll('.carousel-cell')
-const sectionCells = main.querySelectorAll('.section')
-const sectionContent = main.querySelectorAll('.section-content')
-const sectionBackdrops = main.querySelectorAll('.section .backdrop')
-const placeHolderSections = main.querySelectorAll('.placeholder')
+const sectionCells = sectionsContainer.querySelectorAll('#section')
+const placeHolderSections = sectionsContainer.querySelectorAll('.placeholder')
+const sectionContent = sectionsContainer.querySelectorAll('.section-content')
+
+const homeSection = document.querySelector('#section.home')
+const homeContent = document.querySelector('#content.home')
+const aboutMeSection = document.querySelector('#section.about-me')
+const aboutMeContent = document.querySelector('#content.about-me')
+const resumeSection = document.querySelector('#section.resume')
+const resumeContent = document.querySelector('#content.resume')
+const portfolioSection = document.querySelector('#section.portfolio')
+const portfolioContent = document.querySelector('#content.portfolio')
+const contactSection = document.querySelector('.contact')
 
 let sectionPositions = []
 let carouselSections = []
 let sections = []
+let containerHeight = sectionsContainer.offsetHeight
+let sectionHeight = homeSection.offsetHeight
 let sectionOffset = 0
 let last_known_scroll_position = 0
 let ticking = false
@@ -40,6 +50,8 @@ let enterSectionSix = false
 let enterSectionSeven = false
 
 function recalculateSectionPositions() {
+  containerHeight = sectionsContainer.offsetHeight
+  sectionHeight = sectionCells[0].offsetHeight
   document.body.classList.remove('collapsed')
   console.log('Re-calculating section positions')
 
@@ -94,7 +106,7 @@ function scrollToSectionIndex(sectionIndex) {
       top: sectionPosition,
     })
   } catch {
-    console.log('Could not scroll to section index ' + sectionIndex)
+    alert('Could not scroll to section index ' + sectionIndex)
   }
 }
 
@@ -232,8 +244,8 @@ function rotateCarousel() {
 
 function changeCarousel() {
   let cellRadius = Math.round(70 / 2 / Math.tan(Math.PI / 4))
-  let sectionRadius = Math.round(window.innerHeight / 2 / Math.tan(Math.PI / 4))
-  let contentRadius = Math.round(window.innerHeight / 2 / Math.tan(Math.PI / 4))
+  let sectionRadius = Math.round(sectionHeight / 2 / Math.tan(Math.PI / 4))
+  let contentRadius = Math.round(containerHeight / 2 / Math.tan(Math.PI / 4) + 70)
   
   for (var i = 0; i < sidebarCells.length; i++) {
     var cell = sidebarCells[i]
@@ -307,13 +319,6 @@ advanceCarousel()
 var controller = new ScrollMagic.Controller({
   container: '.sections-container',
 })
-var sectionHeight = sectionCells[0].offsetHeight
-var carouselSpan = Math.round(
-  sectionCells[0].offsetHeight +
-    sectionCells[1].offsetHeight +
-    sectionCells[2].offsetHeight +
-    sectionCells[3].offsetHeight
-)
 
 //Timelines
 var firstSectionTimeline = new TimelineMax()
@@ -334,45 +339,32 @@ var firstSectionTimeline = new TimelineMax()
     },
   )
   .fromTo(
-    '.landing.section-content',
-    1.1,
+    '#content.home',
+    .9,
     {
       // yoyoEase:true,
-      z: '-=0',
-      y: '+=0',
-      rotationX: '+=0',
       autoAlpha: 1,
+      z: '+=70'
     },
     {
       // yoyoEase:true,
-      z: '-=100%',
-      y: '+=25%',
-      rotationX: '+=10',
-      autoAlpha: .5,
+      autoAlpha: 0,
+      z: '-=70'
     },
-    '-=1'
+    '-=.9'
+  )
+  .to(
+    '#content.about-me',
+    .9,
+    {
+      // yoyoEase:true,
+      autoAlpha: 1,
+      y: '+=70'
+    },
+    '-=.9'
   )
   .fromTo(
-    '.about-me.section-content',
-    1,
-    {
-      // yoyoEase:true,
-      z: '-50vh',
-      y: '-=25%',
-      rotationX: '-90',
-      autoAlpha: .5,
-    },
-    {
-      // yoyoEase:true,
-      z: '0',
-      y: '50%',
-      // rotationX: '+=0',
-      autoAlpha: 1,
-    },
-    '-=1'
-  )
-  .fromTo(
-    '.about-me .shadow',
+    '.about-me .section.shadow',
     1,
     {
       // yoyoEase:true,
@@ -404,6 +396,16 @@ var secondSectionTimeline = new TimelineMax()
       // autoAlpha: 0,
     },
   )
+  .to(
+    '#content.about-me',
+    .9,
+    {
+      // yoyoEase:true,
+      autoAlpha: 0,
+      y: '-=70'
+    },
+    '-=1'
+  )
 
 var thirdSectionTimeline = new TimelineMax()
   .fromTo(
@@ -424,8 +426,8 @@ var thirdSectionTimeline = new TimelineMax()
   )
 
 var firstSection = new ScrollMagic.Scene({
-  triggerElement: '.landing.placeholder',
-  duration: sectionHeight,
+  triggerElement: '.home.placeholder',
+  duration: containerHeight,
   offset: -0.1,
   triggerHook: 0,
 })
@@ -442,7 +444,7 @@ var firstSection = new ScrollMagic.Scene({
 
 var secondSection = new ScrollMagic.Scene({
   triggerElement: '.about-me.placeholder',
-  duration: sectionHeight,
+  duration: containerHeight,
   offset: -0.1,
   triggerHook: 0,
 })
@@ -452,12 +454,12 @@ var secondSection = new ScrollMagic.Scene({
 
 var thirdSection = new ScrollMagic.Scene({
   triggerElement: '.resume.placeholder',
-  duration: sectionHeight,
+  duration: containerHeight,
   offset: -0.1,
   triggerHook: 0,
 })
   .setTween(thirdSectionTimeline)
-  .setPin('.non-static')
+  .setPin('.non-static', {pushfollowers: true})
   .addTo(controller)
 
 scrollUpButton.addEventListener('click', scrollToPreviousSection)

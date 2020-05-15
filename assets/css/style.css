@@ -64,14 +64,7 @@ main > .body {
   overflow-y: scroll;
 }
 
-.spacer {
-  position: relative;
-  height: 200vh;
-  width: 100vw;
-  background-color: tan;
-}
-
-.scrollmagic-pin-spacer {
+.sections-container > .scrollmagic-pin-spacer {
   grid-column: 1/3;
 }
 
@@ -80,8 +73,9 @@ main > .body {
   height: 100vh;
   transform-style: preserve-3d;
   overflow-y: scroll;
-  scroll-snap-type: y proximity;
+  /* scroll-snap-type: y proximity; */
   z-index: 999;
+  overscroll-behavior: auto;
 }
 
 .non-static {
@@ -96,7 +90,7 @@ main > .body {
 .non-static .section {
   height: 100vh;
   position: absolute;
-  width: 100vw;
+  width: 120%;
   /* transform-origin: 50vw 50vh -50vh; */
   transform-style: preserve-3d;
   top: 0;
@@ -109,8 +103,10 @@ main > .body {
   height: 100vh;
   position: absolute;
   width: 100vw;
+  opacity: 0;
+  top: 0;
   transform-style: preserve-3d;
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
 }
 
 .static {
@@ -545,23 +541,24 @@ main > .body {
 }
 
 /* top section */
-.landing.section {
+.home.section {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
   overflow: hidden;
   transform: rotateX(0deg);
   transform-style: preserve-3d;
   /* transition: all .5s ease-out; */
 }
+.non-static #content.home {
+  opacity: 1;
+  visibility: visible;
+}
 
-.landing.section-content .splash {
+.home.section-content .splash {
   position: absolute;
   background: url('/assets/imgs/splash_1.jpg') no-repeat center center;
   background-size: cover;
-  box-shadow: var(--medium-drop-shadow);
   top: var(--standard-margin-width);
   right: var(--standard-margin-width);
   left: 0;
@@ -573,8 +570,6 @@ main > .body {
 
 /* about-me section */
 .about-me.section {
-  height: 100vh;
-  width: 100vw;
   opacity: 1;
   /* transition: all 0.5s ease-out; */
 }
@@ -591,9 +586,10 @@ main > .body {
   transition: all 0.5s ease-out;
   transition-delay: 0.1s;
   z-index: 0;
+  /* backface-visibility: hidden; */
 }
 
-.about-me.section .shadow {
+.about-me.section .section.shadow {
   width: 150%;
   height: 100%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, .1));
@@ -602,6 +598,17 @@ main > .body {
   position: absolute;
   z-index: -1;
   top: 0px;
+  opacity: 1;
+}
+.about-me.section .content.shadow {
+  position: relative;
+  filter: blur(20px);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.1));
+  box-shadow: var(--medium-drop-shadow);
+  top: var(--standard-margin-width);
+  right: 10%;
+  width: 90%;
+  height: 90%;
   opacity: 1;
 }
 
@@ -670,6 +677,32 @@ main > .body {
   z-index: 1;
 }
 
+.resume.section-content .splash {
+  position: absolute;
+  background: url('/assets/imgs/splash_1.jpg') no-repeat center center;
+  background-size: cover;
+  box-shadow: var(--medium-drop-shadow);
+  top: var(--standard-margin-width);
+  right: var(--standard-margin-width);
+  left: 0;
+  bottom: var(--standard-margin-width);
+  transition: all 0.5s ease-out;
+  transition-delay: 0.1s;
+  z-index: 0;
+}
+
+.resume.section .section.shadow {
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, .1));
+  background-size: cover;
+  background-position: 50% 50%;
+  position: absolute;
+  z-index: -1;
+  top: 0px;
+  opacity: 1;
+}
+
 /* section resume */
 
 .portfolio.section {
@@ -678,9 +711,23 @@ main > .body {
   z-index: 1;
 }
 
-/* section contact-me */
+.portfolio.section-content .splash {
+  position: absolute;
+  background: url('/assets/imgs/splash_1.jpg') no-repeat center center;
+  background-size: cover;
+  box-shadow: var(--medium-drop-shadow);
+  top: var(--standard-margin-width);
+  right: var(--standard-margin-width);
+  left: 0;
+  bottom: var(--standard-margin-width);
+  transition: all 0.5s ease-out;
+  transition-delay: 0.1s;
+  z-index: 0;
+}
 
-.section.contact-me {
+/* section contact */
+
+.section.contact {
   height: 100vh;
   width: 100vw;
   z-index: 1;
