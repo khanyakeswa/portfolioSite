@@ -5,235 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="stylesheet" href="assets/css/normalize.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="stylesheet" href="assets/css/style-new.css" />
     <link rel="stylesheet" href="https://use.typekit.net/bcw7brl.css" />
     <link rel="stylesheet" href="assets/fonts/metropolis/metropolis.css" />
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
-    <script src="assets/js/bodymovin.js"></script>
-    <script src="assets/js/lottie.js"></script>
     <title>My Portfolio</title>
   </head>
   <body>
     <main>
-      <div class="scroll-buttons">
-        <div class="scroll-up">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 8.21 5.66"
-          >
+      <div class="logo-container">
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70">
+            <defs></defs>
             <path
-              d="M3.58 2.61a.67.67 0 0 1 1 0L7.1 5.46c.24.29.55.24.82 0l.12-.14a.89.89 0 0 0-.07-1.18L4.65.29a.67.67 0 0 0-1 0L.25 4.1a.89.89 0 0 0-.06 1.18l.13.14c.26.28.57.33.81 0 .81-1 1.64-1.89 2.45-2.85"
-              data-name="website 1"
+              class="graphic"
+              d="M15,15V85H85V15ZM54.37,65l-.09-.08L39.37,49.83V65H37.5V35h1.87V48.18L52.86,35h2.69L41.07,48.91,57.15,65Zm10.38,0L49.11,49,63.26,35h2.65L51.63,48.91,67.5,65Z"
+              transform="translate(-15 -15)"
             />
-          </svg>
-        </div>
-        <div class="scroll-down">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 8.21 5.66"
-          >
-            <path
-              d="M4.62 3.05a.67.67 0 0 1-1 0c-.82-1-1.64-1.9-2.45-2.86C.93-.1.62-.04.35.24L.23.38A.88.88 0 0 0 .3 1.55l3.32 3.86a.67.67 0 0 0 1 0l3.33-3.86A.88.88 0 0 0 8.01.38L7.88.24c-.26-.28-.57-.34-.81-.05-.81 1-1.64 1.9-2.45 2.86"
-              data-name="website 1"
+            <polygon
+              class="b"
+              points="39.37 50 39.28 49.92 24.37 34.83 24.37 50 22.5 50 22.5 20 24.37 20 24.37 33.18 37.86 20 40.55 20 26.07 33.91 42.15 50 39.37 50"
+            />
+            <polygon
+              class="b"
+              points="49.75 50 34.11 33.99 48.26 20 50.91 20 36.63 33.91 52.5 50 49.75 50"
             />
           </svg>
         </div>
       </div>
-      <div class="scroll-indicator">
-        <div class="dots">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 8.79 123.3"
-            preserveAspectRatio="xMidYMid"
-          >
-            <circle class="dot-7" cx="4.39" cy="118.91" r="4.39" />
-            <circle class="dot-6" cx="4.39" cy="99.82" r="4.39" />
-            <circle class="dot-5" cx="4.39" cy="80.73" r="4.39" />
-            <circle class="dot-4" cx="4.39" cy="61.64" r="4.39" />
-            <circle class="dot-3" cx="4.39" cy="42.56" r="4.39" />
-            <circle class="dot-2" cx="4.39" cy="23.48" r="4.39" />
-            <circle class="dot-1" cx="4.39" cy="4.39" r="4.39" />
-          </svg>
-        </div>
-      </div>
-      <div class="nav">
-        <div class="logo-container">
-          <div class="logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70">
-              <defs></defs>
-              <path
-                class="graphic"
-                d="M15,15V85H85V15ZM54.37,65l-.09-.08L39.37,49.83V65H37.5V35h1.87V48.18L52.86,35h2.69L41.07,48.91,57.15,65Zm10.38,0L49.11,49,63.26,35h2.65L51.63,48.91,67.5,65Z"
-                transform="translate(-15 -15)"
-              />
-              <polygon
-                class="b"
-                points="39.37 50 39.28 49.92 24.37 34.83 24.37 50 22.5 50 22.5 20 24.37 20 24.37 33.18 37.86 20 40.55 20 26.07 33.91 42.15 50 39.37 50"
-              />
-              <polygon
-                class="b"
-                points="49.75 50 34.11 33.99 48.26 20 50.91 20 36.63 33.91 52.5 50 49.75 50"
-              />
-            </svg>
-          </div>
-        </div>
-        <div class="navbar">
-          <div style="cursor: pointer;" class="link home">
-            Home
-          </div>
-          <div style="cursor: pointer;" class="link about-me">
-            About Me
-          </div>
-          <div style="cursor: pointer;" class="link process">
-            My Process
-          </div>
-          <div style="cursor: pointer;" class="link portfolio">
-            Portfolio
-          </div>
-          <div style="cursor: pointer;" class="link portfolio">
-            Contact
-          </div>
-          <div class="link-underscore"></div>
-        </div>
-        <div class="hamburger-menu"></div>
-      </div>
-      <div class="sidebar">
-        <div class="content">
-          <div class="title">
-            <div class="name">Hi! I'm Khanya Keswa,</div>
-            <div class="scene">
-              <div id="sidebar-carousel" class="carousel">
-                <div class="carousel-cell"><span>UX Designer</span></div>
-                <div class="carousel-cell"><span>UI/UX Developer</span></div>
-                <div class="carousel-cell"><span>Product Designer</span></div>
-                <div class="carousel-cell"><span>Design Strategist</span></div>
+      <div class="sections-container">
+        <div class="landing">
+          <div class="bg"></div>
+          <div class="namecard">
+            <div class="intro">
+              <div class="name">
+                <span>Hi!</span><span>I'm Khanya Keswa,</span>
               </div>
-            </div>
-            <div class="underscore-container">
-              <div class="underscore">
-                <div class="v"></div>
-                <div class="v"></div>
-                <div class="v"></div>
-                <div class="v"></div>
-                <div class="h"></div>
-                <div class="h"></div>
-              </div>
-            </div>
-          </div>
-          <div class="mouse-over">Hover for more...</div>
-          <div class="blurb">
-            <div class="blurb-content">
-              I’m a creator at heart, and I express that identity through
-              whichever medium or material possible. From a young age, both the
-              arts and tech have been a significant presence in my life whether
-              through hobby or discipline. Feel free to explore my work.
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="body">
-        <div class="sections-container">
-          <div class="static">
-            <div class="home placeholder"></div>
-            <div class="about-me placeholder"></div>
-            <div class="resume placeholder"></div>
-            <div class="portfolio placeholder"></div>
-            <div class="color-bar">
-              <div class="tagline">Let's build something cool.</div>
-              <div class="tagline-button-wrapper">
-                <div class="tagline-button">
-                  <div class="button-content">CONTACT ME</div>
-                  <div class="button-graphic">
-                    <svg
-                      width="6px"
-                      height="9px"
-                      viewBox="0 0 6 9"
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                    >
-                      <g
-                        id="Page-1"
-                        stroke="none"
-                        stroke-width="1"
-                        fill="none"
-                        fill-rule="evenodd"
-                      >
-                        <g
-                          id="website_1"
-                          transform="translate(-196.000000, -680.000000)"
-                          fill="#E54E40"
-                        >
-                          <g
-                            id="Group-3"
-                            transform="translate(196.000000, 680.000000)"
-                          >
-                            <path
-                              d="M3.045,3.58455 C3.378,3.87155 3.378,4.33455 3.045,4.62255 C2.089,5.44755 1.147,6.26055 0.192,7.07355 C-0.098,7.31055 -0.04,7.62355 0.236,7.89855 L0.38,8.01155 C0.728,8.31055 1.206,8.24855 1.554,7.94855 L5.406,4.62255 C5.739,4.33455 5.739,3.87155 5.406,3.58455 L1.553,0.25855 C1.206,-0.04145 0.728,-0.10345 0.38,0.19655 L0.235,0.32055 C-0.04,0.58355 -0.098,0.89655 0.192,1.13455 C1.147,1.94655 2.089,2.77155 3.045,3.58455"
-                              id="Fill-1"
-                            ></path>
-                          </g>
-                        </g>
-                      </g>
-                    </svg>
-                  </div>
+              <div class="scene">
+                <div id="sidebar-carousel" class="carousel">
+                  <div class="carousel-cell"><div>UI/UX Designer</div></div>
+                  <div class="carousel-cell"><div>UI/UX Strategist</div></div>
+                  <div class="carousel-cell"><div>Developer</div></div>
+                  <div class="carousel-cell"><div>Visual Designer</div></div>
                 </div>
               </div>
-              <div class="lottie"></div>
-            </div>
-            <div class="contact">
-              <div class="body">
-                <div class="title">
-                  <div class="header">Contact Me</div>
-                  <div class="underscore"></div>
-                </div>
-                <div class="content"><div class="graphics"></div></div>
-              </div>
             </div>
           </div>
-          <div class="non-static">
-            <div id="section" class="resume section">
-              <div class="section shadow"></div>
-              <div class="content shadow"></div>
-            </div>
-            <div id="content" class="resume section-content">
-              <div class="splash"></div>
-            </div>
-            <div id="section" class="about-me section">
-              <div class="section shadow"></div>
-              <div class="content shadow"></div>
-            </div>
-            <div id="content" class="about-me section-content">
-              <div class="splash"></div>
-            </div>
-            <div id="section" class="home section">
-              <div class="section shadow"></div>
-              <div class="content shadow"></div>
-            </div>
-            <div id="content" class="home section-content">
-              <div class="splash"></div>
-            </div>
-            <div id="section" class="portfolio section">
-              <div class="shadow"></div>
-            </div>
-            <div id="content" class="portfolio section-content">
-              <div class="splash"></div>
-            </div>
+          <div class="links">
+            <a class="github">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 39.19">
+                <path
+                  d="M21.8,4.18A19.94,19.94,0,0,0,18,43v-4.6a8.25,8.25,0,0,1-1.8.2A4.33,4.33,0,0,1,12,34.81a4.15,4.15,0,0,0-1.2-2c-.6-.2-.8-.2-.8-.4,0-.4.6-.4.8-.4,1.2,0,2.21,1.4,2.61,2a3.64,3.64,0,0,0,2.8,2,4,4,0,0,0,1.8-.4A5.07,5.07,0,0,1,20,32c-4.6-1-8-3.6-8-8a9.46,9.46,0,0,1,2.41-6,7.42,7.42,0,0,1-.4-2.8,6.85,6.85,0,0,1,.6-3.2,9,9,0,0,1,5.61,2.6A10.82,10.82,0,0,1,24,14a13,13,0,0,1,4,.6,8.62,8.62,0,0,1,5.6-2.6,9.94,9.94,0,0,1,.4,3.2,6.65,6.65,0,0,1-.4,2.8A9,9,0,0,1,36,24c0,4.41-3.41,7-8,8a6.17,6.17,0,0,1,2,4.61v6.61a20,20,0,0,0-8.21-39Z"
+                  transform="translate(-4.03 -4.04)"
+                />
+              </svg>
+            </a>
+            <a class="linkedin">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+                <path
+                  d="M41,6H11a5,5,0,0,0-5,5V41a5,5,0,0,0,5,5H41a5,5,0,0,0,5-5V11A5,5,0,0,0,41,6ZM12.15,40l0-18.6h6.21l0,18.6Zm2.95-21h0a3.15,3.15,0,1,1,.07-6.28,3.15,3.15,0,1,1,0,6.28ZM39.91,40H33.64V29.84c0-2.44-.65-4.1-2.83-4.1a3.18,3.18,0,0,0-3,2.21,4.12,4.12,0,0,0-.2,1.47V40H21.3l0-18.61h6.3l0,2.62A5.81,5.81,0,0,1,33,21c4,0,7,2.59,7,8.18Z"
+                  transform="translate(-6 -6)"
+                />
+              </svg>
+            </a>
+            <a class="behance">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 23.34">
+                <rect x="24.99" width="11.67" height="3.33" />
+                <path
+                  d="M38.06,31.33a4.66,4.66,0,0,1-2.58.72h-.4a4.51,4.51,0,0,1-4.25-4.74H44a18.57,18.57,0,0,0-.24-3.72,8.33,8.33,0,0,0-8.54-6.27,5.93,5.93,0,0,0-.73,0,9,9,0,0,0-8.82,9.18,8.24,8.24,0,0,0,.78,3.61,8.27,8.27,0,0,0,1.8,2.9,11.35,11.35,0,0,0,2.83,1.93,11.57,11.57,0,0,0,3.89.74,10,10,0,0,0,5.41-1.5,8.5,8.5,0,0,0,3.36-4.34H39.34A3.28,3.28,0,0,1,38.06,31.33ZM35.21,20.71c2.54,0,3.62,2.66,3.89,3.86H30.83A4.36,4.36,0,0,1,35.21,20.71Z"
+                  transform="translate(-4 -12.33)"
+                />
+                <path
+                  d="M19.84,23.1A5,5,0,0,0,23,18.33c0-6-6.57-6-7.8-6H4V35.67H15.7c1,0,8.29-.29,8.29-6.57A5.69,5.69,0,0,0,19.84,23.1ZM9,16.38h4.89c.48,0,3.65.12,3.65,2.62a3,3,0,0,1-3.14,2.85H9Zm5.57,15.21H9V25.2H14.6a3.42,3.42,0,0,1,3.83,2.95c0,.11,0,.23,0,.35C18.46,31.5,15,31.59,14.56,31.59Z"
+                  transform="translate(-4 -12.33)"
+                />
+              </svg>
+            </a>
+            <a class="twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 32.51">
+                <path
+                  d="M46.12,14.62a16.48,16.48,0,0,1-4.72,1.29A8.23,8.23,0,0,0,45,11.37a16.42,16.42,0,0,1-5.21,2,8.21,8.21,0,0,0-14,7.48A23.32,23.32,0,0,1,8.9,12.27a8.22,8.22,0,0,0,2.54,11,8.3,8.3,0,0,1-3.71-1v.1a8.22,8.22,0,0,0,6.58,8.05,8.1,8.1,0,0,1-2.16.29,7.91,7.91,0,0,1-1.55-.15,8.23,8.23,0,0,0,7.67,5.7A16.48,16.48,0,0,1,8.08,39.7a18,18,0,0,1-2-.11A23.28,23.28,0,0,0,18.7,43.27c15.09,0,23.35-12.5,23.35-23.34,0-.36,0-.72,0-1.07a16.53,16.53,0,0,0,4.1-4.24"
+                  transform="translate(-6.12 -10.77)"
+                />
+              </svg>
+            </a>
           </div>
+          <div class="about-me-dropdown">
+            <div class="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.5 19.3">
+                <polygon
+                  points="29.6 0 16.3 13.6 2.8 0.3 0 3.2 16.4 19.3 32.5 2.8 29.6 0"
+                />
+              </svg>
+            </div>
+            <span>About Me</span>
+          </div>
+          <div class="backsplash"></div>
         </div>
+        <div id="about-me" class="about-me"></div>
       </div>
     </main>
 
-    <!-- <script src="assets/js/scroll-buttons.js"></script> -->
     <script src="assets/js/scripts.js"></script>
   </body>
 </html>

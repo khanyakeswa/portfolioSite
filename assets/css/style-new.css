@@ -1,0 +1,284 @@
+html,
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: 'Metropolis Regular', sans-serif;
+}
+
+.sections-container {
+    width: 100vw;
+    height: auto;
+    overflow-x: hidden;
+}
+
+.landing {
+  width: 100vw;
+  height: 100vh;
+  background: #3190d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  /* overflow-x: hidden; */
+}
+
+.landing > * {
+  position: relative;
+}
+
+.landing .bg {
+  background: url(/assets/imgs/splash.jpg) no-repeat;
+  background-position: 45% 50%;
+  background-size: cover;
+  bottom: 0;
+  left: 0;
+  opacity: 0.01;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 500ms;
+}
+
+.namecard {
+  position: relative;
+  left: 25px;
+  width: auto;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.name {
+  height: 90px;
+  font-size: 36px;
+  margin-left: 5px;
+  margin-right: 15px;
+  color: #fff;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.name span:nth-child(1) {
+  margin-right: 10px;
+}
+
+.links {
+  position: relative;
+  left: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 120px;
+  margin-left: 5px;
+  height: auto;
+}
+
+.about-me-dropdown {
+  position: relative;
+  top: 65px;
+  left: 25px;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.about-me {
+    width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 900px) {
+  .landing .bg {
+    background-position: 0 50%;
+  }
+
+  .namecard {
+    position: relative;
+    left: 12.5vw;
+  }
+
+  .intro {
+    display: flex;
+  }
+
+  .name {
+    flex-direction: row;
+    height: 50px;
+    align-items: center;
+  }
+
+  .links {
+    position: relative;
+    left: 12.5vw;
+  }
+
+  .about-me-dropdown {
+    left: 12.5vw;
+  }
+}
+
+.intro {
+  width: auto;
+}
+
+.name span {
+  height: 40px;
+  transform: translateY(3px);
+  z-index: 2;
+}
+
+.scene {
+  font-size: 36px;
+  height: 50px;
+  color: #fff;
+  z-index: 1;
+}
+
+.carousel {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease-in-out;
+  opacity: 0;
+}
+
+.carousel.visible {
+  opacity: 1;
+}
+
+.carousel-cell {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding-left: 5px;
+  width: auto;
+  background-color: #e54e40;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+  backface-visibility: hidden;
+  box-shadow: 0 1.2px 2.7px -10px rgba(0, 0, 0, 0.078),
+    0 3px 6.9px -10px rgba(0, 0, 0, 0.111),
+    0 6.2px 14.2px -10px rgba(0, 0, 0, 0.139),
+    0 12.8px 29.2px -10px rgba(0, 0, 0, 0.172),
+    0 35px 80px -10px rgba(0, 0, 0, 0.25);
+}
+
+.carousel.firstCell .carousel-cell:nth-child(1) {
+  opacity: 1;
+}
+.carousel.secondCell .carousel-cell:nth-child(2) {
+  opacity: 1;
+}
+.carousel.thirdCell .carousel-cell:nth-child(3) {
+  opacity: 1;
+}
+.carousel.fourthCell .carousel-cell:nth-child(4) {
+  opacity: 1;
+}
+
+.carousel-cell div {
+  backface-visibility: hidden;
+  height: 36px;
+  padding-right: 10px;
+  transform: translateY(3px);
+}
+
+.logo-container {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  box-shadow: 0 1.2px 2.7px -10px rgba(0, 0, 0, 0.078),
+    0 3px 6.9px -10px rgba(0, 0, 0, 0.111),
+    0 6.2px 14.2px -10px rgba(0, 0, 0, 0.139),
+    0 12.8px 29.2px -10px rgba(0, 0, 0, 0.172),
+    0 35px 80px -10px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+.logo {
+  height: 100%;
+  width: 100%;
+}
+
+.logo .graphic {
+  fill: #e54e40;
+}
+
+.logo polygon {
+  opacity: 1;
+  fill: #fff;
+  transition: all 0.4s;
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+}
+
+.links svg {
+  width: 20px;
+  height: auto;
+  fill: #ffffff;
+  box-shadow: 0 1.2px 2.7px -5px rgba(0, 0, 0, 0.2);
+}
+
+.about-me-dropdown .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #e54e40;
+  margin-right: 10px;
+  box-shadow: 0 1.2px 2.7px -5px rgba(0, 0, 0, 0.078),
+    0 3px 3.5px -5px rgba(0, 0, 0, 0.111),
+    0 6.2px 7px -5px rgba(0, 0, 0, 0.139),
+    0 8px 15px -5px rgba(0, 0, 0, 0.172),
+    0 10px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.about-me-dropdown .button svg {
+  animation: bounce-2 2s infinite;
+  width: 16px;
+  height: auto;
+  fill: #ffffff;
+}
+
+.about-me-dropdown span {
+  font-size: 14px;
+  color: #fff;
+}
+
+@keyframes bounce-2 {
+  0%,
+  20%,
+  50%,
+  100% {
+    -webkit-transform: translateY(1px);
+    -ms-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+  40% {
+    -webkit-transform: translateY(-6px);
+    -ms-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+  60% {
+    -webkit-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+}
