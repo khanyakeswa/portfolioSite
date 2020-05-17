@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="assets/css/style-new.css" />
     <link rel="stylesheet" href="https://use.typekit.net/bcw7brl.css" />
     <link rel="stylesheet" href="assets/fonts/metropolis/metropolis.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.js"></script>
     <title>My Portfolio</title>
   </head>
   <body>
@@ -39,7 +43,9 @@
       </div>
       <div class="sections-container">
         <div class="landing">
-          <div class="bg"></div>
+          <div class="bg">
+            <div class="splash"></div>
+          </div>
           <div class="namecard">
             <div class="intro">
               <div class="name">
@@ -106,7 +112,16 @@
           </div>
           <div class="backsplash"></div>
         </div>
-        <div id="about-me" class="about-me"></div>
+        <div id="about-me" class="about-me">
+          <div class="content">
+            <div class="headshot"></div>
+            <div class="my-story">
+              <div class="header"></div>
+              <div class="copy"></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"></div>
       </div>
     </main>
 

@@ -6,16 +6,45 @@ body {
   font-family: 'Metropolis Regular', sans-serif;
 }
 
+.logo-container {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  box-shadow: 0 1.2px 2.7px -10px rgba(0, 0, 0, 0.078),
+    0 3px 6.9px -10px rgba(0, 0, 0, 0.111),
+    0 6.2px 14.2px -10px rgba(0, 0, 0, 0.139),
+    0 12.8px 29.2px -10px rgba(0, 0, 0, 0.172),
+    0 35px 80px -10px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+}
+
+.logo {
+  height: 100%;
+  width: 100%;
+}
+
+.logo .graphic {
+  fill: #e54e40;
+}
+
+.logo polygon {
+  opacity: 1;
+  fill: #fff;
+  transition: all 0.4s;
+}
+
 .sections-container {
-    width: 100vw;
-    height: auto;
-    overflow-x: hidden;
+  width: 100vw;
+  height: auto;
+  overflow-x: hidden;
 }
 
 .landing {
   width: 100vw;
   height: 100vh;
-  background: #3190d9;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,21 +57,26 @@ body {
 }
 
 .landing .bg {
-  background: url(/assets/imgs/splash.jpg) no-repeat;
-  background-position: 45% 50%;
-  background-size: cover;
   bottom: 0;
   left: 0;
   opacity: 0.01;
   position: fixed;
   right: 0;
   top: 0;
-  transition: opacity 500ms;
+  background-color: #3190d9;
+}
+
+.landing .bg .splash {
+  width: 100%;
+  height: 100%;
+  background: url(/assets/imgs/splash.jpg) no-repeat;
+  background-size: cover;
+  background-position: 45% 50%;
 }
 
 .namecard {
   position: relative;
-  left: 25px;
+  left: 35px;
   width: auto;
   height: auto;
   margin-bottom: 30px;
@@ -63,66 +97,6 @@ body {
 
 .name span:nth-child(1) {
   margin-right: 10px;
-}
-
-.links {
-  position: relative;
-  left: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 120px;
-  margin-left: 5px;
-  height: auto;
-}
-
-.about-me-dropdown {
-  position: relative;
-  top: 65px;
-  left: 25px;
-  height: 35px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.about-me {
-    width: 100vw;
-  height: 100vh;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media screen and (min-width: 900px) {
-  .landing .bg {
-    background-position: 0 50%;
-  }
-
-  .namecard {
-    position: relative;
-    left: 12.5vw;
-  }
-
-  .intro {
-    display: flex;
-  }
-
-  .name {
-    flex-direction: row;
-    height: 50px;
-    align-items: center;
-  }
-
-  .links {
-    position: relative;
-    left: 12.5vw;
-  }
-
-  .about-me-dropdown {
-    left: 12.5vw;
-  }
 }
 
 .intro {
@@ -193,34 +167,15 @@ body {
   transform: translateY(3px);
 }
 
-.logo-container {
-  width: 70px;
-  height: 70px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  box-shadow: 0 1.2px 2.7px -10px rgba(0, 0, 0, 0.078),
-    0 3px 6.9px -10px rgba(0, 0, 0, 0.111),
-    0 6.2px 14.2px -10px rgba(0, 0, 0, 0.139),
-    0 12.8px 29.2px -10px rgba(0, 0, 0, 0.172),
-    0 35px 80px -10px rgba(0, 0, 0, 0.25);
-  z-index: 100;
-}
-
-.logo {
-  height: 100%;
-  width: 100%;
-}
-
-.logo .graphic {
-  fill: #e54e40;
-}
-
-.logo polygon {
-  opacity: 1;
-  fill: #fff;
-  transition: all 0.4s;
+.links {
+  position: relative;
+  left: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 150px;
+  margin-left: 5px;
+  height: auto;
 }
 
 .links a {
@@ -229,25 +184,34 @@ body {
 }
 
 .links svg {
-  width: 20px;
+  width: 25px;
   height: auto;
   fill: #ffffff;
   box-shadow: 0 1.2px 2.7px -5px rgba(0, 0, 0, 0.2);
+}
+
+.about-me-dropdown {
+  position: relative;
+  top: 65px;
+  left: 35px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .about-me-dropdown .button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   background-color: #e54e40;
-  margin-right: 10px;
+  margin-right: 15px;
   box-shadow: 0 1.2px 2.7px -5px rgba(0, 0, 0, 0.078),
-    0 3px 3.5px -5px rgba(0, 0, 0, 0.111),
-    0 6.2px 7px -5px rgba(0, 0, 0, 0.139),
-    0 8px 15px -5px rgba(0, 0, 0, 0.172),
-    0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    0 3px 3.5px -5px rgba(0, 0, 0, 0.111), 0 6.2px 7px -5px rgba(0, 0, 0, 0.139),
+    0 8px 15px -5px rgba(0, 0, 0, 0.172), 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .about-me-dropdown .button svg {
@@ -258,8 +222,80 @@ body {
 }
 
 .about-me-dropdown span {
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
+}
+
+.about-me {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.about-me .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.about-me .content .headshot {
+  position: relative;
+  width: calc(100vw - 140px);
+  max-width: 300px;
+  height: calc(100vw - 140px);
+  max-height: 300px;
+  background: url(/assets/imgs/headshot.jpg) no-repeat;
+  background-size: 120%;
+  background-position: 50% 40%;
+  box-shadow: 0 1px 2.8px -5px rgba(0, 0, 0, 0.056),
+    0 2.3px 6.7px -5px rgba(0, 0, 0, 0.081),
+    0 4.4px 12.5px -5px rgba(0, 0, 0, 0.1),
+    0 7.8px 22.3px -5px rgba(0, 0, 0, 0.119),
+    0 14.6px 41.8px -5px rgba(0, 0, 0, 0.13),
+    0 35px 100px -5px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.about-me .content .my-story {
+  position: absolute;
+  right: 35px;
+  bottom: 70px;
+  left: 35px;
+  min-width: 300px;
+  max-width: 1000px;
+}
+
+@media screen and (min-width: 900px) {
+  .landing .bg .splash {
+    background-position: 0 50%;
+  }
+
+  .namecard {
+    position: relative;
+    left: 12.5vw;
+  }
+
+  .intro {
+    display: flex;
+  }
+
+  .name {
+    flex-direction: row;
+    height: 50px;
+    align-items: center;
+  }
+
+  .links {
+    position: relative;
+    left: 12.5vw;
+  }
+
+  .about-me-dropdown {
+    left: 12.5vw;
+  }
 }
 
 @keyframes bounce-2 {

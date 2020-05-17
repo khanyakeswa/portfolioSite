@@ -13,6 +13,7 @@
   const sidebarCarousel = document.getElementById('sidebar-carousel')
   const sidebarCells = sidebarCarousel.querySelectorAll('.carousel-cell')
   const scrollButton = document.querySelector('.about-me-dropdown .button')
+  const splash = document.querySelector('.bg')
   const aboutMeSection = document.querySelector('#about-me')
 
   scrollButton.addEventListener('click', function () {
@@ -110,13 +111,13 @@
 
   var controller = new ScrollMagic.Controller()
 
-  var tween = Tweenlite.to(splash, 1, {
+  var tween = TweenMax.to(splash, 1, {
     autoAlpha: 0,
   })
   var scrollScene = new ScrollMagic.Scene({
     triggerElement: '.landing',
-    duration: '50%',
-    triggerHook: 0.5,
+    duration: '100%',
+    triggerHook: 0,
   })
   .setTween(tween)
   .addTo(controller)
