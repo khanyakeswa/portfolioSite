@@ -121,14 +121,14 @@ body {
 }
 
 .scene {
-  height: 40px;
+  height: 50px;
   color: #fff;
   z-index: 1;
 }
 
 .carousel {
   width: 100%;
-  height: 40px;
+  height: 50px;
   position: absolute;
   transform-style: preserve-3d;
   transition: transform 0.7s ease-in-out;
@@ -191,6 +191,7 @@ body {
 .links a {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .links svg {
@@ -198,6 +199,11 @@ body {
   height: auto;
   fill: #ffffff;
   box-shadow: 0 1.2px 2.7px -5px rgba(0, 0, 0, 0.2);
+}
+
+.links svg:hover {
+  fill: #e54e40;
+  transition: all .25s;
 }
 
 .about-me-dropdown {
